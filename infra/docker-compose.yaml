@@ -1,0 +1,99 @@
+services:
+  client:
+    build:
+      context: ../aps/client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # Map port 3000 in the container to port 3000 on the host
+    volumes:
+      - ../aps/client:/app
+    environment:
+      - NODE_ENV=development
+      - VITE_BACKEND_URL=http://localhost:3002/
+    depends_on:
+      - auth-service
+      - invoices-service
+    networks:
+      - aps-network
+
+  auth-service:
+    build:
+      context: ../aps/services/auth
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002" # Map port 3002 in the container to port 3002 on the host
+    volumes:
+      - ../aps/services/auth:/app
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://mongo_db/mongo_db`;
+      - JWT_KEY=your_jwt_secret_key
+    depends_on:
+      - auth_db
+    networks:
+      - aps-network
+
+  invoices-service:
+    build:
+      context: ../aps/services/invoices
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003" # Map port 3003 in the container to port 3003 on the host
+    volumes:
+      - ../aps/services/invoices:/app
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://mongo_db/mongo_db`;
+      - JWT_KEY=your_jwt_secret_key
+    depends_on:
+      - invoices_db
+    networks:
+      - aps-network
+
+  auth_db:
+    image: mongo:8.0.0-rc13-jammy
+    container_name: auth_db
+    restart: unless-stopped
+    env_file: ./.env
+
+    ports:
+      - $MONGODB_AUTH_LOCAL_PORT:$MONGODB_AUTH_DOCKER_PORT
+    volumes:
+      - auth-mongo-data:/data/db
+    networks:
+      - aps-network
+
+  invoices_db:
+    image: mongo:8.0.0-rc13-jammy
+    container_name: invoices_db
+    restart: unless-stopped
+    env_file: ./.env
+
+    ports:
+      - $MONGODB_INVOICES_LOCAL_PORT:$MONGODB_INVOICES_DOCKER_PORT
+    volumes:
+      - invoices-mongo-data:/data/db
+    networks:
+      - aps-network
+
+  event-bus_db:
+    image: redis/redis-stack-server:latest
+    container_name: event-bus_db
+    restart: unless-stopped
+    env_file: ./.env
+
+    ports:
+      - $REDIS_EVENT_BUS_LOCAL_PORT:$REDIS_EVENT_BUS_DOCKER_PORT
+    volumes:
+      - event-bus-redis-data:/data/db
+    networks:
+      - aps-network
+
+networks:
+  aps-network:
+    driver: bridge
+
+volumes:
+  auth-mongo-data:
+  invoices-mongo-data:
+  event-bus-redis-data:
