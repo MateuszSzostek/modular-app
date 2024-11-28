@@ -1,3 +1,4 @@
+/*
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { requireAuth, validateRequest } from '@cygnetops/common';
@@ -39,3 +40,4 @@ router.post(
 );
 
 export { router as createTicketRouter };
+*/

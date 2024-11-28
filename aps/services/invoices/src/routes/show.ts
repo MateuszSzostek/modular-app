@@ -1,3 +1,4 @@
+/*
 import express, { Request, Response } from 'express';
 import { NotFoundError } from '@cygnetops/common';
 import { Ticket } from '../models/ticket';
@@ -15,3 +16,4 @@ router.get('/api/tickets/:id', async (req: Request, res: Response) => {
 });
 
 export { router as showTicketRouter };
+*/

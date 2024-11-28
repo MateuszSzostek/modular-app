@@ -1,5 +1,6 @@
+/*
 import { Message } from 'node-nats-streaming';
-import { Listener, OrderCreatedEvent, Subjects } from '@cygnetops/common';
+import { Listener, OrderCreatedEvent, Subjects } from '@modular-app/shared';
 import { queueGroupName } from './queue-group-name';
 import { Ticket } from '../../models/ticket';
 import { TicketUpdatedPublisher } from '../publishers/ticket-updated-publisher';
@@ -35,3 +36,4 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
     msg.ack();
   }
 }
+*/

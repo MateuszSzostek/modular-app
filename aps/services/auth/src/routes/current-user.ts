@@ -1,5 +1,5 @@
 import express from 'express';
-import { currentUser } from '@cygnetops/common';
+import { currentUser } from '@modular-app/shared';
 
 const router = express.Router();
 

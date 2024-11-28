@@ -1,4 +1,6 @@
-import { MongoMemoryServer } from 'mongodb-memory-server';
+//import { MongoMemoryServer } from 'mongodb-memory-server';
+
+/*
 import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../app';
@@ -60,3 +62,5 @@ global.signin = () => {
   // return a string thats the cookie with the encoded data
   return [`express:sess=${base64}`];
 };
+
+*/
