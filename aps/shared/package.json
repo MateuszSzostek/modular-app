@@ -1,14 +1,14 @@
 {
   "name": "@modular-app/shared",
-  "version": "1.0.30",
+  "version": "1.0.33",
   "description": "",
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "main": "shared/index.js",
+  "types": "shared/index.d.ts",
   "files": [
-    "build/**/*"
+    "shared"
   ],
   "scripts": {
-    "clean": "del ./build/*",
+    "clean": "del ./shared/*",
     "build": "npm run clean && tsc",
     "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish"
   },

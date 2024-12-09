@@ -1,0 +1,115 @@
+$mobile-break-point: 320px;
+$tablet-break-point: 768px;
+$desktop-break-point: 1240px;
+$wide-break-point: 1920px;
+
+$max-app-width: 1208px;
+
+:root {
+  --brand-primary-color: #146551;
+  --brand-secondary-color-100: #fff4d1;
+  --brand-secondary-color-200: #fff2c7;
+  --brand-secondary-color-300: #ffe89e;
+  --brand-secondary-color-400: #ffe07d;
+  --brand-secondary-color-500: #ffd447;
+  --brand-secondary-color-600: #ffc300;
+  --brand-secondary-color-700: #efb700;
+  --brand-secondary-color-800: #e5af00;
+  --brand-secondary-color-900: #c79900;
+  --brand-secondary-color-darken: #ffd447;
+  --app-ui-bg: #404357;
+  --app-ui-element: #484f66;
+  --app-gray: gray;
+  --app-black: #0b0b0b;
+  --app-danger: #b63439;
+  --app-green-300: #b7ffc5;
+  --app-green-400: #4fe678;
+  --app-green-500: #329b4f;
+
+  --color-banana-yellow: #ffd166;
+  --color-banana-yellow-light: #ffe6a1;
+  --color-banana-yellow-dark: #e0b761;
+
+  --color-bubblegum-pink: #ff85a2;
+  --color-bubblegum-pink-light: #ffa9be;
+  --color-bubblegum-pink-dark: #e76e87;
+
+  --color-grass-green: #7dce82;
+  --color-grass-green-light: #a2e5a0;
+  --color-grass-green-dark: #5fae63;
+
+  --color-cotton-candy-blue: #a4c3e0;
+  --color-cotton-candy-blue-light: #bdd5ec;
+  --color-cotton-candy-blue-dark: #7b9dbf;
+
+  --color-sunshine-yellow: #f7ff58;
+  --color-sunshine-yellow-light: #ffff88;
+  --color-sunshine-yellow-dark: #d5da44;
+
+  --color-sky-blue: #89cff0;
+  --color-sky-blue-light: #a8e3ff;
+  --color-sky-blue-dark: #5aa8d5;
+
+  --color-tangerine-orange: #ff9f1c;
+  --color-tangerine-orange-light: #ffb346;
+  --color-tangerine-orange-dark: #e68300;
+
+  --color-lavender-purple: #c8a2c8;
+  --color-lavender-purple-light: #dbb6db;
+  --color-lavender-purple-dark: #a387a3;
+
+  --color-cherry-red: #ff6b6b;
+  --color-cherry-red-light: #ff8787;
+  --color-cherry-red-dark: #e64d4d;
+
+  --color-mint-green: #a5ffd6;
+  --color-mint-green-light: #c2ffea;
+  --color-mint-green-dark: #7fe3b7;
+
+  --color-peachy-orange: #ffaf8d;
+  --color-peachy-orange-light: #ffc8ad;
+  --color-peachy-orange-dark: #e68d64;
+
+  --color-coral-pink: #ff7f50;
+  --color-coral-pink-light: #ff9f7a;
+  --color-coral-pink-dark: #e6673a;
+
+  --color-lemonade-pink: #ffd5cd;
+  --color-lemonade-pink-light: #ffe8e4;
+  --color-lemonade-pink-dark: #e6b9b3;
+
+  --color-aqua-blue: #adeeee;
+  --color-aqua-blue-light: #c1ffff;
+  --color-aqua-blue-dark: #7fc9cc;
+
+  --color-lime-green: #d0f4c5;
+  --color-lime-green-light: #e5ffda;
+  --color-lime-green-dark: #a7d995;
+
+  --color-periwinkle-blue: #c5e9ff;
+  --color-periwinkle-blue-light: #d9f3ff;
+  --color-periwinkle-blue-dark: #9fcde6;
+
+  --color-buttercup-yellow: #f4e04d;
+  --color-buttercup-yellow-light: #f9ee7b;
+  --color-buttercup-yellow-dark: #cdb53b;
+
+  --color-candy-apple-red: #ff5a5a;
+  --color-candy-apple-red-light: #ff7777;
+  --color-candy-apple-red-dark: #e62e2e;
+
+  --color-berry-purple: #9b30ff;
+  --color-berry-purple-light: #b64dff;
+  --color-berry-purple-dark: #751cd9;
+
+  --color-ocean-blue: #4a90e2;
+  --color-ocean-blue-light: #6fa8ff;
+  --color-ocean-blue-dark: #1f6cc7;
+
+  --color-ui-foreground: #43444e;
+  --color-ui-element: #3b3c45;
+  --color-ui-bg: #242529;
+
+  --color-app-goldenrod: #daa520;
+  --color-app-white: #dbdbdb;
+}

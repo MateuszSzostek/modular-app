@@ -1,0 +1,38 @@
+@import "../../../../common//styles//variables.scss";
+
+.landing-layout-wrapper {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-layout {
+  height: 100vh;
+  padding: 16px;
+  width: 100vw;
+  background-color: var(--color-ui-bg);
+}
+
+.landing-layout__header {
+  background-color: unset;
+}
+
+.landing-layout__content {
+  display: flex;
+  width: 100%;
+}
+
+.landing-layout__logo {
+  max-width: 64px;
+}
+
+@media (min-width: $desktop-break-point) {
+  .landing-layout {
+    width: $max-app-width;
+  }
+
+  .landing-layout__logo {
+    max-width: 96px;
+  }
+}

@@ -1,0 +1,58 @@
+:root {
+  font-family:
+    gill sans,
+    sans-serif;
+  padding: 0;
+  margin: 0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#root {
+  margin: 0;
+}
+
+.ant-form-item-explain-success,
+.ant-form-item-explain-error {
+  color: #ff9eab !important;
+}
+
+.google-btn__wrapper {
+  & * {
+    font-family:
+      gill sans,
+      sans-serif !important;
+  }
+  & > div {
+    height: 56px !important;
+  }
+  & > div > div > div > div {
+    height: 56px !important;
+  }
+}
+
+.bring-in-anim {
+  animation: bringIn 0.3s ease-in-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes bringIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

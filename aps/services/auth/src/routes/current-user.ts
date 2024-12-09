@@ -1,5 +1,5 @@
 import express from 'express';
-import { currentUser } from '@modular-app/shared';
+import { currentUser } from '../shared';
 
 const router = express.Router();
 

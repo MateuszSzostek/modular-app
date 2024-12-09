@@ -1,0 +1,78 @@
+@import "../../../../common//styles//variables.scss";
+
+.admin-app-layout {
+  width: 100vw;
+
+  & > .ant-layout {
+    background-color: var(--color-ui-bg);
+
+    & > header {
+      background-color: var(--color-ui-element) !important;
+    }
+
+    & > main {
+      background-color: var(--color-ui-element) !important;
+    }
+  }
+}
+
+.admin-app-layout__navigation {
+  background-color: transparent;
+  border-bottom: none;
+
+  & > li.ant-menu-item-active:not(:nth-last-child(-n + 2)):hover {
+    & a {
+      // color: transparent !important;
+    }
+  }
+
+  & > li:not(:nth-last-child(-n + 2)):hover::after,
+  & > li:not(:nth-last-child(-n + 2)).ant-menu-item-active::after,
+  & > li:not(:nth-last-child(-n + 2)).ant-menu-item-selected::before {
+    border-color: transparent !important;
+  }
+
+  & > li:nth-last-child(-n + 2):hover::after,
+  & > li:nth-last-child(-n + 2).ant-menu-item-active::after,
+  & > li:nth-last-child(-n + 2).ant-menu-item-selected::before {
+    border-color: transparent !important;
+  }
+
+  & > li:nth-child(1) {
+    margin-left: 24px !important;
+  }
+
+  & > li:nth-child(5) {
+    margin-left: auto !important;
+  }
+
+  & > li:nth-last-child(-n + 2) {
+    & > span {
+      display: flex;
+    }
+  }
+
+  & > li:nth-last-child(-n + 2) {
+    & > span > a {
+      padding-left: 14px;
+      padding-right: 18px;
+    }
+  }
+
+  & > .ant-menu-overflow-item.ant-menu-item {
+    //color: var(--app-white);
+  }
+}
+
+.kindergarten-nav {
+  background-color: var(--color-ui-element);
+  height: calc(100vh - 19px);
+
+  & * {
+    font-family: "GillSans Bold";
+    text-decoration: none !important;
+  }
+}
+
+@media (min-width: $desktop-break-point) {
+}

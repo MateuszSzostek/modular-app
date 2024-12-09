@@ -1,0 +1,20 @@
+:root {
+  --primary-color: var(--brand-green);
+  --secondary-color: var(--brand-light-green);
+  --text-primary-color: var(--brand-black);
+  --text-secondary-color: var(--brand-gray);
+}
+
+.theme-light {
+  --primary-color: var(--brand-dark-green);
+  --secondary-color: var(--brand-light-green);
+  --text-primary-color: var(--brand-black);
+  --text-secondary-color: var(--brand-gray);
+}
+
+.theme-dark {
+  --primary-color: var(--brand-light-green);
+  --secondary-color: var(--brand-dark-green);
+  --text-primary-color: var(--brand-white);
+  --text-secondary-color: var(--brand-gray);
+}
