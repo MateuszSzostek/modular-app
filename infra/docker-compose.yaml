@@ -26,7 +26,7 @@ services:
       - ../aps/services/auth:/app
     environment:
       - NODE_ENV=development
-      - MONGO_URI=mongodb://mongo_db/mongo_db`;
+      - MONGO_URI=mongodb://mongo_db:27017/mongo_db
       - JWT_KEY=your_jwt_secret_key
     depends_on:
       - auth_db
@@ -43,7 +43,7 @@ services:
       - ../aps/services/invoices:/app
     environment:
       - NODE_ENV=development
-      - MONGO_URI=mongodb://mongo_db/mongo_db`;
+      - MONGO_URI=mongodb://mongo_db:27017/mongo_db
       - JWT_KEY=your_jwt_secret_key
     depends_on:
       - invoices_db
@@ -52,10 +52,9 @@ services:
 
   auth_db:
     image: mongo:8.0.0-rc13-jammy
-    container_name: auth_db
+    container_name: mongo_db
     restart: unless-stopped
     env_file: ./.env
-
     ports:
       - $MONGODB_AUTH_LOCAL_PORT:$MONGODB_AUTH_DOCKER_PORT
     volumes:
@@ -68,7 +67,6 @@ services:
     container_name: invoices_db
     restart: unless-stopped
     env_file: ./.env
-
     ports:
       - $MONGODB_INVOICES_LOCAL_PORT:$MONGODB_INVOICES_DOCKER_PORT
     volumes:
@@ -81,7 +79,6 @@ services:
     container_name: event-bus_db
     restart: unless-stopped
     env_file: ./.env
-
     ports:
       - $REDIS_EVENT_BUS_LOCAL_PORT:$REDIS_EVENT_BUS_DOCKER_PORT
     volumes:
