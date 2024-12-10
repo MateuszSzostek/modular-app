@@ -1,4 +1,4 @@
-import { BASE_API_URL } from "../../../common/consts/index"
+import { BASE_API_URL } from '../../../const'
 
 /*
  *** Requests Types
