@@ -1,4 +1,4 @@
-import { BASE_API_URL } from "../../../common/consts/index"
+import { BASE_API_URL } from '../../../const/index'
 
 /*
  *** Requests Types
@@ -9,7 +9,7 @@ export type SignUpRequest = {
   privacyPolicy: boolean
 }
 export type SignUpResponse = {
-  status: "success" | "error"
+  status: 'success' | 'error'
   code: number
   message: string
   data: {}
@@ -111,28 +111,28 @@ export interface IUserState {
  *** Field Types Keys
  */
 export enum SIGN_UP_INPUT_FIELDS {
-  email = "email",
-  password = "password",
-  privacyPolicy = "privacyPolicy",
+  email = 'email',
+  password = 'password',
+  privacyPolicy = 'privacyPolicy',
 }
 
 export enum SIGN_IN_INPUT_FIELDS {
-  email = "email",
-  password = "password",
+  email = 'email',
+  password = 'password',
 }
 
 export enum RESET_PASSWORD_INPUT_FIELDS {
-  email = "email",
+  email = 'email',
 }
 
 export enum NEW_PASSWORD_INPUT_FIELDS {
-  newPassword = "newPassword",
-  newPasswordConfirmation = "newPasswordConfirmation",
+  newPassword = 'newPassword',
+  newPasswordConfirmation = 'newPasswordConfirmation',
 }
 
 export interface IUserActionByKey {
-  key: "name" | "surname" | "userId" | "sessionToken"
+  key: 'name' | 'surname' | 'userId' | 'sessionToken'
   value: string
 }
 
-export const BASE_AUTH_URL = `${BASE_API_URL}api/users/`
+export const BASE_AUTH_URL = `${BASE_API_URL}api/auth/`

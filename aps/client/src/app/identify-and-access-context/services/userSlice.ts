@@ -1,16 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit"
-import type { PayloadAction } from "@reduxjs/toolkit"
-import { IUserState, IUserActionByKey } from "../domain/identify-and-access-context"
+import { createSlice } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import { IUserState, IUserActionByKey } from '../domain/identify-and-access-context'
 
 const initialState: IUserState = {
-  userId: "",
-  name: "",
-  surname: "",
-  sessionToken: "",
+  userId: '',
+  name: '',
+  surname: '',
+  sessionToken: '',
 }
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     setUserData: (state, action: PayloadAction<IUserState>) => {
@@ -21,7 +21,7 @@ export const userSlice = createSlice({
       state[action.payload.key] = action.payload.value
     },
     clearUserFieldByKey: (state, action: PayloadAction<IUserActionByKey>) => {
-      state[action.payload.key] = ""
+      state[action.payload.key] = ''
     },
   },
 })

@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {
   SignUpRequest,
   SignUpResponse,
@@ -12,24 +12,22 @@ import {
   SignUpConfirmationRequest,
   GetCurrentUserResponse,
   GetCurrentUserRequest,
-} from "../domain/identify-and-access-context"
-import { BASE_AUTH_URL } from "../domain/identify-and-access-context"
-import { setUserFieldByKey } from "./userSlice"
-import { ValidationErrorsResponse } from "../../../common/types"
-//import { baseJwtQuery } from "../../../common/services/auth"
+} from '../domain/identify-and-access-context'
+import { BASE_AUTH_URL } from '../domain/identify-and-access-context'
+import { setUserFieldByKey } from './userSlice'
+import { ValidationErrorsResponse } from '../../../types'
 
 export const authApi = createApi({
-  reducerPath: "authApi",
-  // baseQuery: baseJwtQuery(BASE_AUTH_URL),
+  reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_AUTH_URL,
-    credentials: "include",
+    credentials: 'include',
   }),
   endpoints: (builder) => ({
     signUp: builder.mutation<SignUpResponse, SignUpRequest>({
       query: ({ email, password, privacyPolicy }) => ({
         url: `sign-up`,
-        method: "POST",
+        method: 'POST',
         body: { email, password, privacyPolicy },
       }),
       transformResponse: (response: SignUpResponse) => response,
@@ -38,18 +36,20 @@ export const authApi = createApi({
         try {
           console.log(arg)
           const { data } = await queryFulfilled
-          if ("userId" in data && "sessionToken" in data) {
+          if ('userId' in data && 'sessionToken' in data) {
             dispatch(
               setUserFieldByKey({
-                key: "userId",
+                key: 'userId',
+                //@ts-expect-error
                 value: data.userId,
-              }),
+              })
             )
             dispatch(
               setUserFieldByKey({
-                key: "sessionToken",
+                key: 'sessionToken',
+                //@ts-expect-error
                 value: data.sessionToken,
-              }),
+              })
             )
           }
         } catch (error) {
@@ -60,7 +60,7 @@ export const authApi = createApi({
     signUpConfirmation: builder.mutation<SignUpConfirmationResponse, SignUpConfirmationRequest>({
       query: ({ userId, token }) => ({
         url: `sign-up-confirmation`,
-        method: "POST",
+        method: 'POST',
         body: { userId },
         headers: {
           authorization: `Bearer ${token}`,
@@ -73,7 +73,7 @@ export const authApi = createApi({
     login: builder.mutation<SignInResponse, SignInRequest>({
       query: ({ email, password }) => ({
         url: `sign-in`,
-        method: "POST",
+        method: 'POST',
         body: { email, password },
       }),
 
@@ -84,7 +84,7 @@ export const authApi = createApi({
     resetPassword: builder.mutation<ResetPasswordResponse, ResetPasswordRequest>({
       query: ({ email }) => ({
         url: `reset-password`,
-        method: "POST",
+        method: 'POST',
         body: { email },
       }),
 
@@ -95,7 +95,7 @@ export const authApi = createApi({
     newPassword: builder.mutation<NewPasswordResponse, NewPasswordRequest>({
       query: ({ jwtToken, newPassword, newPasswordConfirmation }) => ({
         url: `new-password`,
-        method: "POST",
+        method: 'POST',
         body: { jwtToken, newPassword, newPasswordConfirmation },
       }),
 
@@ -106,7 +106,7 @@ export const authApi = createApi({
     getCurrentUser: builder.query<GetCurrentUserResponse, GetCurrentUserRequest>({
       query: () => ({
         url: `currentuser`,
-        method: "GET",
+        method: 'GET',
       }),
 
       transformResponse: (response: GetCurrentUserResponse) => response,
@@ -115,11 +115,4 @@ export const authApi = createApi({
   }),
 })
 
-export const {
-  useSignUpMutation,
-  useSignUpConfirmationMutation,
-  useLoginMutation,
-  useResetPasswordMutation,
-  useNewPasswordMutation,
-  useLazyGetCurrentUserQuery,
-} = authApi
+export const { useSignUpMutation, useSignUpConfirmationMutation, useLoginMutation, useResetPasswordMutation, useNewPasswordMutation, useLazyGetCurrentUserQuery } = authApi

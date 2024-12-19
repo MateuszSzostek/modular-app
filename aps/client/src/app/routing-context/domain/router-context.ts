@@ -5,12 +5,12 @@ export interface ProtectedRouteProps {
 }
 
 export const ROUTES = {
-  app: "app",
-  auth: "auth",
-  login: "login",
-  register: "register",
-  newPassword: "reset_password",
-  resetPassword: "reset-password",
-  dashboard: "dashboard",
-  invoices: "invoices",
+  app: 'app',
+  auth: 'auth',
+  login: 'login',
+  register: 'register',
+  newPassword: 'new-password',
+  resetPassword: 'reset-password',
+  dashboard: 'dashboard',
+  invoices: 'invoices',
 }

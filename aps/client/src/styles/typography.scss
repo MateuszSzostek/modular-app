@@ -1,13 +1,14 @@
-@font-face {
-  font-family: "GillSans Regular";
-  src: url("../fonts/gill/Gill Sans.otf") format("truetype");
-}
 
 @font-face {
-  font-family: "GillSans Bold";
-  src: url("../fonts/gill/Gill Sans Bold.otf") format("truetype");
+  font-family: 'Exo 2';
+  src: url('../assets/fonts/Exo2-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900; /* Variable font weight range */
+  font-style: normal;
 }
-
 body {
-  font-family: "GillSans Regular";
+  font-family: 'Exo 2';
+}
+
+body, .ant-typography {
+  font-family: 'Exo 2', sans-serif !important;
 }

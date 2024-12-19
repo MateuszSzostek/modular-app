@@ -1,4 +1,19 @@
 services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "81:81" # Map port 81 for the first server
+      - "82:82" # Map port 82 for the second server
+    volumes:
+      - ../aps/proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - client
+      - auth-service
+      - invoices-service
+    networks:
+      - aps-network
+
   client:
     build:
       context: ../aps/client
@@ -9,7 +24,7 @@ services:
       - ../aps/client:/app
     environment:
       - NODE_ENV=development
-      - VITE_BACKEND_URL=http://localhost:3002/
+      - VITE_BACKEND_URL=http://0.0.0.0:82/
     depends_on:
       - auth-service
       - invoices-service
@@ -26,7 +41,7 @@ services:
       - ../aps/services/auth:/app
     environment:
       - NODE_ENV=development
-      - MONGO_URI=mongodb://mongo_db:27017/mongo_db
+      - MONGO_URI=mongodb://auth_db:27017/auth_db
       - JWT_KEY=your_jwt_secret_key
     depends_on:
       - auth_db
@@ -43,7 +58,7 @@ services:
       - ../aps/services/invoices:/app
     environment:
       - NODE_ENV=development
-      - MONGO_URI=mongodb://mongo_db:27017/mongo_db
+      - MONGO_URI=mongodb://invoices_db:27017/invoices_db
       - JWT_KEY=your_jwt_secret_key
     depends_on:
       - invoices_db
@@ -52,7 +67,7 @@ services:
 
   auth_db:
     image: mongo:8.0.0-rc13-jammy
-    container_name: mongo_db
+    container_name: auth_db
     restart: unless-stopped
     env_file: ./.env
     ports:

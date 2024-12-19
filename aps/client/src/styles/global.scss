@@ -21,25 +21,6 @@ body {
   margin: 0;
 }
 
-.ant-form-item-explain-success,
-.ant-form-item-explain-error {
-  color: #ff9eab !important;
-}
-
-.google-btn__wrapper {
-  & * {
-    font-family:
-      gill sans,
-      sans-serif !important;
-  }
-  & > div {
-    height: 56px !important;
-  }
-  & > div > div > div > div {
-    height: 56px !important;
-  }
-}
-
 .bring-in-anim {
   animation: bringIn 0.3s ease-in-out;
   animation-fill-mode: forwards;
@@ -55,4 +36,8 @@ body {
     opacity: 1;
     transform: translateY(0px);
   }
+}
+
+.ant-typography, .ant-btn, .ant-menu-item {
+  font-family: 'Exo 2', sans-serif !important;
 }

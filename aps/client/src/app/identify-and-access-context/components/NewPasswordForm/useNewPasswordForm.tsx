@@ -1,12 +1,12 @@
-import { type FormProps } from "antd"
-import { NewPasswordFieldType, NewPasswordResponse } from "../../domain/identify-and-access-context"
-import { useState } from "react"
-import { useNewPasswordMutation } from "../../services/authSlice"
-import { useNavigate } from "react-router-dom"
-import { Errors, ParsedValidationErrors, Response } from "../../../../common/types"
-import { getErrors } from "../../../../common/utils"
-import { ROUTES } from "../../../routing-context/domain/router-context"
-import { useParams } from "react-router-dom"
+import { type FormProps } from 'antd'
+import { NewPasswordFieldType, NewPasswordResponse } from '../../domain/identify-and-access-context'
+import { useState } from 'react'
+import { useNewPasswordMutation } from '../../services/authSlice'
+import { useNavigate } from 'react-router-dom'
+import { Errors, ParsedValidationErrors, Response } from '../../../../types'
+import { getErrors } from '../../../../utils'
+import { ROUTES } from '../../../routing-context/domain/router-context'
+import { useParams } from 'react-router-dom'
 
 export default function useNewPasswordForm() {
   const [newPassword, result] = useNewPasswordMutation()
@@ -15,16 +15,16 @@ export default function useNewPasswordForm() {
   const [hasPasswordChanged, setHasPasswordChanged] = useState<boolean>()
   const params = useParams()
 
-  const onFinish: FormProps<NewPasswordFieldType>["onFinish"] = (values) => {
+  const onFinish: FormProps<NewPasswordFieldType>['onFinish'] = (values) => {
     setFormErrors({})
     newPassword({
-      jwtToken: params?.token || "",
+      jwtToken: params?.token || '',
       newPassword: values?.newPassword,
       newPasswordConfirmation: values?.newPasswordConfirmation,
     }).then((response: Response<NewPasswordResponse>) => {
-      if ("error" in response) {
+      if ('error' in response) {
         onValidationErrors(response.error as Errors)
-      } else if (response.data.status === "200 OK") {
+      } else if (response.data.status === '200 OK') {
         setHasPasswordChanged(true)
         setTimeout(() => {
           setHasPasswordChanged(false)
@@ -32,8 +32,8 @@ export default function useNewPasswordForm() {
       }
     })
   }
-  const onFinishFailed: FormProps<NewPasswordFieldType>["onFinishFailed"] = (errorInfo): void => {
-    console.log("Failed:", errorInfo)
+  const onFinishFailed: FormProps<NewPasswordFieldType>['onFinishFailed'] = (errorInfo): void => {
+    console.log('Failed:', errorInfo)
   }
 
   const onPasswordChangeConfirmationModalDispose = (): void => {

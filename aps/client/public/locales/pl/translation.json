@@ -1,0 +1,76 @@
+{
+  "navigation": {
+    "dashboard-link": "Dashboard",
+    "chat-link": "Chat",
+    "invoices-link": "Invoices"
+  },
+  "register-form": {
+    "title": "Zarejestruj się",
+    "email-label": "Email",
+    "password-label": "Hasło",
+    "privacy-policy-label": "Oświadczam, że znam i akceptuję warunki ogólne i politykę prywatności.",
+    "register-button": "Zarejestruj się",
+    "have-a-account-label": "Masz juz konto? ",
+    "login-link": "Zaloguj się",
+    "google-register-button": "Zarejestruj się przy użyciu konta Google"
+  },
+  "login-form": {
+    "title": "Zaloguj się",
+    "google-login-button": "Zaloguj się przy użyciu konta Google",
+    "email-label": "Email",
+    "password-label": "Hasło",
+    "forgot-password-link": "Nie pamiętasz hasła? ",
+    "login-button": "Zaloguj się",
+    "have-no-account-label": "Nie masz konta? ",
+    "register-link": "Zarejestruj się"
+  },
+  "reset-password-form": {
+    "title": "Zresetuj Haslo",
+    "email-label": "Email",
+    "send-button": "Wyślij",
+    "have-no-account-label": "Nie masz konta? ",
+    "register-link": "Zarejestruj się"
+  },
+  "new-password-form": {
+    "title": "Podaj nowe hasło",
+    "password-label": "Hasło",
+    "confirm-password-label": "Powtórz hasło",
+    "change-password-button": "Zmień hasło",
+    "have-no-account-label": "Nie masz konta? ",
+    "register-link": "Zarejestruj się"
+  },
+  "register-confirmation-page": {
+    "loading-text": "Potwierdzamy twoje konto...",
+    "success-text": "Twoje konto zostało potwierdzone",
+    "error-text": "Wystąpił błąd podczas potwierdzania twojego konta, proszę spróbuj ponownie za jakiś czas"
+  },
+  "password-changed-confirmation-modal": {
+    "message": "Hasło zostało zmienione"
+  },
+  "save-invoice-company-details-confirmation-modal": {
+    "title": "Zapisywanie Twoich danych powiodło się!",
+    "message": "Zawsze możesz je edytować w swoim profilu"
+  },
+  "error-code": {
+    "required": "To pole jest wymagane",
+    "email": {
+      "must-be-a-valid-email": "Podany email jest nie wazny",
+      "in-use": "Email in use"
+    },
+    "password": {
+      "uppercase-letter": "Haslo powinno zawierac przynajmiej jedną dużą literę",
+      "must-contain-at-least-one-special-character": "Password must have at least one special scharacter",
+      "must-be-at-least-4-characters-longand-at-most-20": "Password must be between 4 and 20 characters"
+    }
+  },
+  "reset-password-sent-confirmation-modalss": {
+    "message:": "Na podany adres został wysłany link po kliknięciu w niego możliwa będzie zmiana hasła"
+  },
+  "reset-password-sent-confirmation-modal": {
+    "message": "Na podany adres został wysłany link po kliknięciu w niego możliwa będzie zmiana hasła"
+  },
+  "dashboard": {
+    "title": "",
+    "fetch-all-ikonka-products-button": "Fetch all Ikonka Products to Database"
+  }
+}

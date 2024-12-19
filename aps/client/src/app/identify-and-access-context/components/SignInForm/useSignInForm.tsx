@@ -32,6 +32,7 @@ export default function useLoginForm() {
   }
 
   const onValidationErrors = (errors: ValidationErrors): void => {
+    console.log(errors)
     const formErrors = getErrors(errors)
     setFormErrors(formErrors)
   }
