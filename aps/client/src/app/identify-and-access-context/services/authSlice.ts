@@ -16,6 +16,7 @@ import {
 import { BASE_AUTH_URL } from '../domain/identify-and-access-context'
 import { setUserFieldByKey } from './userSlice'
 import { ValidationErrorsResponse } from '../../../types'
+import { Response } from '../../../shared/types'
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -24,13 +25,13 @@ export const authApi = createApi({
     credentials: 'include',
   }),
   endpoints: (builder) => ({
-    signUp: builder.mutation<SignUpResponse, SignUpRequest>({
+    signUp: builder.mutation<Response<SignUpResponse>, SignUpRequest>({
       query: ({ email, password, privacyPolicy }) => ({
         url: `sign-up`,
         method: 'POST',
         body: { email, password, privacyPolicy },
       }),
-      transformResponse: (response: SignUpResponse) => response,
+      transformResponse: (response: Response<SignUpResponse>) => response,
       transformErrorResponse: (response: ValidationErrorsResponse) => response,
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
@@ -57,7 +58,7 @@ export const authApi = createApi({
         }
       },
     }),
-    signUpConfirmation: builder.mutation<SignUpConfirmationResponse, SignUpConfirmationRequest>({
+    signUpConfirmation: builder.mutation<Response<SignUpConfirmationResponse>, SignUpConfirmationRequest>({
       query: ({ userId, token }) => ({
         url: `sign-up-confirmation`,
         method: 'POST',
@@ -66,50 +67,50 @@ export const authApi = createApi({
           authorization: `Bearer ${token}`,
         },
       }),
-      transformResponse: (response: SignUpConfirmationResponse) => response,
+      transformResponse: (response: Response<SignUpConfirmationResponse>) => response,
       transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
     }),
 
-    login: builder.mutation<SignInResponse, SignInRequest>({
+    login: builder.mutation<Response<SignInResponse>, SignInRequest>({
       query: ({ email, password }) => ({
         url: `sign-in`,
         method: 'POST',
         body: { email, password },
       }),
 
-      transformResponse: (response: SignInResponse) => response,
+      transformResponse: (response: Response<SignInResponse>) => response,
       transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
     }),
 
-    resetPassword: builder.mutation<ResetPasswordResponse, ResetPasswordRequest>({
+    resetPassword: builder.mutation<Response<ResetPasswordResponse>, ResetPasswordRequest>({
       query: ({ email }) => ({
         url: `reset-password`,
         method: 'POST',
         body: { email },
       }),
 
-      transformResponse: (response: ResetPasswordResponse) => response,
+      transformResponse: (response: Response<ResetPasswordResponse>) => response,
       transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
     }),
 
-    newPassword: builder.mutation<NewPasswordResponse, NewPasswordRequest>({
+    newPassword: builder.mutation<Response<NewPasswordResponse>, NewPasswordRequest>({
       query: ({ jwtToken, newPassword, newPasswordConfirmation }) => ({
         url: `new-password`,
         method: 'POST',
         body: { jwtToken, newPassword, newPasswordConfirmation },
       }),
 
-      transformResponse: (response: NewPasswordResponse) => response,
+      transformResponse: (response: Response<NewPasswordResponse>) => response,
       transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
     }),
 
-    getCurrentUser: builder.query<GetCurrentUserResponse, GetCurrentUserRequest>({
+    getCurrentUser: builder.query<Response<GetCurrentUserResponse>, GetCurrentUserRequest>({
       query: () => ({
         url: `currentuser`,
         method: 'GET',
       }),
 
-      transformResponse: (response: GetCurrentUserResponse) => response,
+      transformResponse: (response: Response<GetCurrentUserResponse>) => response,
       transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
     }),
   }),

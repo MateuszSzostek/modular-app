@@ -2,19 +2,21 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RequestValidationError = void 0;
 const custom_error_1 = require("./custom-error");
+const constants_1 = require("../constants");
 class RequestValidationError extends custom_error_1.CustomError {
     constructor(errors) {
-        super('Invalid request parameters');
+        super(constants_1.MESSAGE_KEY.INVALID_REQUEST_PARAMETERS);
         this.errors = errors;
-        this.statusCode = 400;
+        this.statusCode = constants_1.STATUS_CODE._400;
         // Only because we are extending a built in class
         Object.setPrototypeOf(this, RequestValidationError.prototype);
     }
     serializeErrors() {
-        return this.errors.map(err => {
+        return this.errors.map((err) => ({
+            messageCode: err.msg,
             //@ts-ignore
-            return { message: err.msg, field: err.param };
-        });
+            field: err === null || err === void 0 ? void 0 : err.param,
+        }));
     }
 }
 exports.RequestValidationError = RequestValidationError;

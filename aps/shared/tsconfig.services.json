@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "./shared/services",
+    "baseUrl": "./shared",   
+    "paths": {
+      "@all/*": ["all/*"]           // Use compiled "all" module
+    }
+  },
+  "include": ["src/services/**/*"]
+}

@@ -10,11 +10,19 @@ const router = express.Router();
 router.post(
   "/api/auth/sign-up",
   [
-    body("email").isEmail().withMessage("Email must be valid"),
+    body("email").isEmail().withMessage("email-must-be-valid"),
     body("password")
       .trim()
-      .isLength({ min: 4, max: 20 })
-      .withMessage("Password must be between 4 and 20 characters"),
+      .notEmpty()
+      .withMessage("password-must-not-be-empty")
+      .isLength({ min: 7 })
+      .withMessage("password-must-be-at-least-7-characters-long")
+      .matches(/[A-Z]/)
+      .withMessage("password-must-contain-at-least-one-uppercase-letter")
+      .matches(/\d/)
+      .withMessage("password-must-contain-at-least-one-number")
+      .matches(/[@$!%*?&]/)
+      .withMessage("password-must-contain-at-least-one-special-character"),
   ],
   validateRequest,
   async (req: Request, res: Response) => {

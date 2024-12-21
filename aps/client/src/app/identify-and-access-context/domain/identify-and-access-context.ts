@@ -9,10 +9,7 @@ export type SignUpRequest = {
   privacyPolicy: boolean
 }
 export type SignUpResponse = {
-  status: 'success' | 'error'
-  code: number
-  message: string
-  data: {}
+  status: number
 }
 
 export type SignUpConfirmationRequest = {

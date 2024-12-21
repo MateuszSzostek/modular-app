@@ -1,27 +1,53 @@
 #!/bin/bash
 
 # Source directory
-SOURCE="./aps/shared/shared"
+ALLSOURCE="../aps/shared/shared/all"
 
 # Destination directories
-DESTINATIONS=(
-    "./aps/client/src"
-    "./aps/services/auth/src"
-    "./aps/services/invoices/src"
-    "./aps/services/event-bus/src"
+ALLDESTINATIONS=(
+    "../aps/client/src/shared"
+    "../aps/services/auth/src/shared"
+    "../aps/services/invoices/src/shared"
+    "../aps/services/event-bus/src/shared"
 )
 
 # Check if source directory exists
-if [ ! -d "$SOURCE" ]; then
-    echo "Source directory $SOURCE does not exist. Exiting..."
+if [ ! -d "$ALLSOURCE" ]; then
+    echo "Source directory $ALLSOURCE does not exist. Exiting..."
     exit 1
 fi
 
 # Loop through each destination and copy the source folder
-for DEST in "${DESTINATIONS[@]}"; do
-    echo "Copying $SOURCE to $DEST..."
-    mkdir -p "$DEST" # Create destination directory if it doesn't exist
-    cp -r "$SOURCE" "$DEST"
+for ALLDEST in "${ALLDESTINATIONS[@]}"; do
+    echo "Copying $ALLSOURCE to $ALLDEST..."
+    mkdir -p "$ALLDEST" # Create destination directory if it doesn't exist
+    cp -r "$ALLSOURCE" "$ALLDEST"
 done
 
-echo "Copy operation completed!"
+echo "Copy all operation completed!"
+
+
+# Source directory
+SERVICESSOURCE="../aps/shared/shared/services"
+
+# Destination directories
+SERVICESDESTINATIONS=(
+    "../aps/services/auth/src/shared"
+    "../aps/services/invoices/src/shared"
+    "../aps/services/event-bus/src/shared"
+)
+
+# Check if source directory exists
+if [ ! -d "$SERVICESSOURCE" ]; then
+    echo "Source directory $SERVICESSOURCE does not exist. Exiting..."
+    exit 1
+fi
+
+# Loop through each destination and copy the source folder
+for SERVICESDEST in "${SERVICESDESTINATIONS[@]}"; do
+    echo "Copying $SERVICESSOURCE to $SERVICESDEST..."
+    mkdir -p "$SERVICESDEST" # Create destination directory if it doesn't exist
+    cp -r "$SERVICESSOURCE" "$SERVICESDEST"
+done
+
+echo "Copy services operation completed!"

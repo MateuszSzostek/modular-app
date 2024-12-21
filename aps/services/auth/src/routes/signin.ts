@@ -15,7 +15,7 @@ router.post(
     body("password")
       .trim()
       .notEmpty()
-      .withMessage("You must supply a password"),
+      .withMessage("password-must-not-be-empty"),
   ],
   validateRequest,
   async (req: Request, res: Response) => {

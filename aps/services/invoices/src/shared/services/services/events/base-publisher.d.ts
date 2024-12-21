@@ -1,0 +1,1 @@
+//# sourceMappingURL=base-publisher.d.ts.map

@@ -2,15 +2,18 @@
   "name": "@modular-app/shared",
   "version": "1.0.33",
   "description": "",
-  "main": "shared/index.js",
-  "types": "shared/index.d.ts",
+  "main": "shared/all/index.js",
+  "module": "shared/services/index.js",
+  "types": "shared/services/index.d.ts",
   "files": [
-    "shared"
+    "shared/all",
+    "shared/services"
   ],
   "scripts": {
     "clean": "del ./shared/*",
-    "build": "npm run clean && tsc",
-    "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish"
+    "build:all": "tsc --project tsconfig.all.json",
+    "build:services": "tsc --project tsconfig.services.json",
+    "build": "npm run clean && npm run build:all && npm run build:services"
   },
   "keywords": [],
   "author": "",

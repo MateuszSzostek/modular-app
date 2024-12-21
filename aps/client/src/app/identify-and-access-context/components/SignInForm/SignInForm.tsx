@@ -11,7 +11,7 @@ export default function SignInForm() {
   const [t] = useTranslation()
 
   return (
-    <Col xs={{ span: 24, offset: 0 }} md={{ span: 12, offset: 8 }} xl={{ span: 8, offset: 8 }}>
+    <Col xs={{ span: 24, offset: 0 }} md={{ span: 12, offset: 6 }} xl={{ span: 8, offset: 8 }}>
       <Form name="login-form" initialValues={{ remember: true }} onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off" layout="vertical">
         <Space direction="horizontal" style={{ width: '100%', justifyContent: 'center' }}>
           <Header>{t('login-form.title')}</Header>

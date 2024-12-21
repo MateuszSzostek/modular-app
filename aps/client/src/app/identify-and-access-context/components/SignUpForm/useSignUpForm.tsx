@@ -6,6 +6,7 @@ import { useSignUpMutation } from '../../services/authSlice'
 import { Response, ParsedValidationErrors, ValidationErrors } from '../../../../types'
 import { getErrors } from '../../../../utils'
 import { ROUTES } from '../../../routing-context/domain/router-context'
+import { STATUS_CODE } from '../../../../shared/constants/index'
 
 export default function useSignUpForm() {
   const navigate = useNavigate()
@@ -25,7 +26,7 @@ export default function useSignUpForm() {
       console.log(response)
       if ('error' in response) {
         onValidationErrors(response.error as ValidationErrors)
-      } else if (response.data.status === 'success') {
+      } else if (response.data.status !== STATUS_CODE._200) {
         setHasRegisterConfirmationLinkSent(true)
         setTimeout(() => {
           setHasRegisterConfirmationLinkSent(false)
@@ -43,6 +44,7 @@ export default function useSignUpForm() {
   }
 
   const onValidationErrors = (errors: ValidationErrors): void => {
+    console.log(errors)
     const formErrors = getErrors(errors)
     setFormErrors(formErrors)
   }
