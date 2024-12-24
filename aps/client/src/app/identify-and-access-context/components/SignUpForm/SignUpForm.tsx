@@ -1,4 +1,4 @@
-import { Form, Space, Col, Row } from 'antd'
+import { Form, Space, Col } from 'antd'
 import { Text, Button, Link, FormItem, TextInput, PasswordInput, Checkbox } from '../../../../atoms'
 import { SignUpFieldType } from '../../domain/identify-and-access-context'
 import useRegisterForm from './useSignUpForm'
@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { ROUTES } from '../../../routing-context/domain/router-context'
 import { SIGN_UP_INPUT_FIELDS } from '../../domain/identify-and-access-context'
 import Header from '../../../../atoms/Header/Header'
+import ValidationLabel from '../../../../molecues/ValidationLabel/ValidationLabel'
 
 export default function SignUpForm() {
   const { onFinish, onFinishFailed, result, formErrors } = useRegisterForm()
@@ -22,7 +23,7 @@ export default function SignUpForm() {
             label={t('register-form.email-label')}
             name={SIGN_UP_INPUT_FIELDS.email}
             rules={[{ required: true, message: t(`error-code.required`) }]}
-            help={formErrors[SIGN_UP_INPUT_FIELDS.email]}
+            help={formErrors[SIGN_UP_INPUT_FIELDS.email]?.map((el) => <ValidationLabel errorCode={t(el)} />)}
           >
             <TextInput />
           </FormItem>
@@ -31,7 +32,7 @@ export default function SignUpForm() {
             label={t('register-form.password-label')}
             name={SIGN_UP_INPUT_FIELDS.password}
             rules={[{ required: true, message: t(`error-code.required`) }]}
-            help={formErrors[SIGN_UP_INPUT_FIELDS.password]}
+            help={formErrors[SIGN_UP_INPUT_FIELDS.password]?.map((el) => <ValidationLabel errorCode={t(el)} />)}
           >
             <PasswordInput />
           </FormItem>

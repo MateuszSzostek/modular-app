@@ -1,11 +1,12 @@
 import { ParsedValidationErrors, ValidationErrors, ValidationError } from '../types'
 import i18n from 'i18next'
 
+/*
 export function transformErrors(errors: ValidationErrors): ValidationErrors {
   const validationErrors: ValidationErrors[] = errors?.data.errors.reduce((acc, error) => {
     return {
       ...acc,
-      [error.field]: error.message,
+      [error.field]: error.messageCode,
     }
   }, {})
   return validationErrors
@@ -24,16 +25,34 @@ export function parseErrors(transformedErrors: ValidationErrors): ParsedValidati
     }
   }, {})
   return parsedErrors
+}*/
+
+type Error = {
+  messageCode: string
+  field: string
 }
 
-export function getErrors(errors: ValidationErrors): ParsedValidationErrors {
+export type ErrorMap = Record<string, string[]>
+
+export function getErrors(errors: ValidationErrors): ErrorMap {
+  console.log(errors)
+  /*
   const validationErrors: {} = errors?.data.errors.reduce((acc, error) => {
     return {
       ...acc,
-      [error.field]: i18n.t(`error-code.${error.field}.${error.message}`),
+      [error.field]: i18n.t(`error-code.${error.field}.${error.messageCode}`),
     }
   }, {})
+  */
 
-  console.log(validationErrors)
-  return validationErrors
+  return errors?.data.errors.reduce((acc: ErrorMap, { field, messageCode }) => {
+    if (!acc[field]) {
+      acc[field] = []
+    }
+    acc[field].push(`error-code.${field}.${messageCode}`)
+    return acc
+  }, {})
+
+  // console.log(validationErrors)
+  // return validationErrors
 }

@@ -12,7 +12,7 @@ export type Errors = {
 
 export type ValidationError = {
   field: string
-  message: string
+  messageCode: string
 }
 
 export type Response<T> = { data: T } | { error: FetchBaseQueryError | SerializedError | ValidationErrorsResponse }

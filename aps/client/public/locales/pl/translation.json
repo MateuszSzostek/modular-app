@@ -54,13 +54,15 @@
   "error-code": {
     "required": "To pole jest wymagane",
     "email": {
-      "must-be-a-valid-email": "Podany email jest nie wazny",
+      "email-must-be-valid": "Podany email jest nie wazny",
       "in-use": "Email in use"
     },
     "password": {
-      "uppercase-letter": "Haslo powinno zawierac przynajmiej jedną dużą literę",
-      "must-contain-at-least-one-special-character": "Password must have at least one special scharacter",
-      "must-be-at-least-4-characters-longand-at-most-20": "Password must be between 4 and 20 characters"
+      "email-must-be-valid": "Email musi być poprawny",
+      "password-must-be-at-least-7-characters-long": "Hasło musi mieć co najmniej 7 znaków",
+      "password-must-contain-at-least-one-uppercase-letter": "Hasło musi zawierać co najmniej jedną wielką literę",
+      "password-must-contain-at-least-one-number": "Hasło musi zawierać co najmniej jedną cyfrę",
+      "password-must-contain-at-least-one-special-character": "Hasło musi zawierać co najmniej jeden znak specjalny"
     }
   },
   "reset-password-sent-confirmation-modalss": {

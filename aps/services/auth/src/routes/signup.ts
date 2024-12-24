@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
-import { validateRequest, BadRequestError } from "../shared";
+import { validateRequest, BadRequestError } from "../shared/services";
 
 import { User } from "../models/user";
 
@@ -50,6 +50,8 @@ router.post(
     req.session = {
       jwt: userJwt,
     };
+
+    // throw new BadRequestError("TESTING");
 
     res.status(201).send(user);
   }

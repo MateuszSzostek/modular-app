@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Source directory
-ALLSOURCE="../aps/shared/shared/all"
+ALLSOURCE="../aps/shared/src/all"
 
 # Destination directories
 ALLDESTINATIONS=(
@@ -28,7 +28,7 @@ echo "Copy all operation completed!"
 
 
 # Source directory
-SERVICESSOURCE="../aps/shared/shared/services"
+SERVICESSOURCE="../aps/shared/src/services"
 
 # Destination directories
 SERVICESDESTINATIONS=(

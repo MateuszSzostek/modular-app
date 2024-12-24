@@ -24,7 +24,7 @@ services:
       - ../aps/client:/app
     environment:
       - NODE_ENV=development
-      - VITE_BACKEND_URL=http://0.0.0.0:82/
+      - VITE_BACKEND_URL=http://api.localhost:82/
     depends_on:
       - auth-service
       - invoices-service
