@@ -1,69 +1,74 @@
-import { PropsWithChildren, useState } from 'react'
-import { MenuFoldOutlined, MenuUnfoldOutlined, UploadOutlined, UserOutlined } from '@ant-design/icons'
-import { Layout, Menu, Button, theme } from 'antd'
+import { PropsWithChildren } from 'react'
+import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons'
+import { Layout, Menu, theme, MenuProps, Row, Col } from 'antd'
 import { useTranslation } from 'react-i18next'
-import { Outlet } from 'react-router-dom'
-import { ROUTES } from '../../../routing-context/domain/router-context'
-import { Link } from '../../../../atoms'
 import './AdminAppLayout.style.scss'
+import React from 'react'
+import Header from '../../../../atoms/Header/Header'
+import Select from '../../../../atoms/Select/Select'
+import { Button } from '../../../../atoms'
+import useAppLayout from './useAdminAppLayout'
 
-const { Header, Sider, Content } = Layout
+const { Header: AntHeader, Content, Footer, Sider } = Layout
+
+const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
+  const key = String(index + 1)
+
+  return {
+    key: `sub${key}`,
+    icon: React.createElement(icon),
+    label: `subnav ${key}`,
+
+    children: new Array(4).fill(null).map((_, j) => {
+      const subKey = index * 4 + j + 1
+      return {
+        key: subKey,
+        label: `option${subKey}`,
+      }
+    }),
+  }
+})
 
 export default function AdminAppLayout({ children }: PropsWithChildren<{}>) {
-  const [collapsed, setCollapsed] = useState(false)
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken()
 
   const { t } = useTranslation()
 
+  const { handleLogout } = useAppLayout()
+
   return (
-    <Layout style={{ width: '100vw' }} className="admin-app-layout">
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
-        <Menu
-          className="kindergarten-nav"
-          theme="dark"
-          mode="inline"
-          items={[
-            {
-              key: '1',
-              icon: <UserOutlined />,
-              label: <Link to={`/${ROUTES.app}/${ROUTES.dashboard}`}>{t('navigation.dashboard-link')}</Link>,
-            },
-            {
-              key: '7',
-              icon: <UploadOutlined />,
-              label: <Link to={`/${ROUTES.app}/${ROUTES.invoices}`}>{t('navigation.invoices-link')}</Link>,
-            },
-          ]}
-        />
-      </Sider>
-      <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }}>
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: '16px',
-              width: 64,
-              height: 64,
-            }}
-          />
-        </Header>
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          <Outlet />
-        </Content>
-      </Layout>
-    </Layout>
+    <Row className="app-layout">
+      <Col span={24}>
+        <Layout style={{ width: '100%' }}>
+          <AntHeader style={{ padding: '0px 24px' }}>
+            <Row style={{ width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Col>
+                <Header>Modular App</Header>
+              </Col>
+              <Col>
+                <Select />
+                <Button color="primary" onClick={handleLogout} htmlType="button">
+                  {t('basic-layout.logout-button')}
+                </Button>
+              </Col>
+            </Row>
+          </AntHeader>
+          <Content style={{ padding: '24px 24px' }}>
+            <Layout style={{ padding: '24px 0', background: colorBgContainer, borderRadius: borderRadiusLG }}>
+              <Sider style={{ background: colorBgContainer }} width={200}>
+                <Menu mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{ height: '100%' }} items={items2} />
+              </Sider>
+              <Content style={{ padding: '0 24px', minHeight: '70vh' }}>
+                Content
+                {children}
+              </Content>
+            </Layout>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Modular app ©{new Date().getFullYear()} Created by Code Artist</Footer>
+        </Layout>
+      </Col>
+    </Row>
   )
 }

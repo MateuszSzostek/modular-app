@@ -65,6 +65,23 @@ services:
     networks:
       - aps-network
 
+  user-service:
+    build:
+      context: ../aps/services/user
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3004" # Map port 3003 in the container to port 3003 on the host
+    volumes:
+      - ../aps/services/user:/app
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://invoices_db:27017/user_db
+      - JWT_KEY=your_jwt_secret_key
+    depends_on:
+      - user_db
+    networks:
+      - aps-network
+
   auth_db:
     image: mongo:8.0.0-rc13-jammy
     container_name: auth_db
@@ -89,15 +106,37 @@ services:
     networks:
       - aps-network
 
-  event-bus_db:
-    image: redis/redis-stack-server:latest
-    container_name: event-bus_db
+  user_db:
+    image: mongo:8.0.0-rc13-jammy
+    container_name: user_db
     restart: unless-stopped
     env_file: ./.env
     ports:
-      - $REDIS_EVENT_BUS_LOCAL_PORT:$REDIS_EVENT_BUS_DOCKER_PORT
+      - $MONGODB_USER_LOCAL_PORT:$MONGODB_USER_DOCKER_PORT
     volumes:
-      - event-bus-redis-data:/data/db
+      - user-mongo-data:/data/db
+    networks:
+      - aps-network
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - aps-network
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
     networks:
       - aps-network
 
@@ -108,4 +147,3 @@ networks:
 volumes:
   auth-mongo-data:
   invoices-mongo-data:
-  event-bus-redis-data:

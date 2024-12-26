@@ -4,7 +4,7 @@ import storage from 'redux-persist/lib/storage'
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
 import { combineReducers } from '@reduxjs/toolkit'
 import { authApi } from '../../app/identify-and-access-context/services/authSlice'
-import userReducer from '../../app/identify-and-access-context/services/userSlice'
+import userReducer from '../../app/identify-and-access-context/services/usersStoreSlice'
 
 //import { createFilter } from "redux-persist-transform-filter"
 

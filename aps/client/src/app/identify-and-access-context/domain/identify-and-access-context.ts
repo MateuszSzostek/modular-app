@@ -30,6 +30,12 @@ export type SignInResponse = {
   message: string
 }
 
+export type SignOutRequest = {}
+export type SignOutResponse = {
+  status: string
+  message: string
+}
+
 export type ResetPasswordRequest = {
   email: string
 }
@@ -133,3 +139,4 @@ export interface IUserActionByKey {
 }
 
 export const BASE_AUTH_URL = `${BASE_API_URL}api/auth/`
+export const BASE_USERS_URL = `${BASE_API_URL}api/users/`

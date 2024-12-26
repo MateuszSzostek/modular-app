@@ -2,8 +2,9 @@ import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
 import { validateRequest, BadRequestError } from "../shared/services";
+const { producer } = require("../kafka");
 
-import { User } from "../models/user";
+import { Auth } from "../models/auth";
 
 const router = express.Router();
 
@@ -28,13 +29,13 @@ router.post(
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await Auth.findOne({ email });
 
     if (existingUser) {
-      throw new BadRequestError("Email in use");
+      throw new BadRequestError("email-in-use", "email");
     }
 
-    const user = User.build({ email, password });
+    const user = Auth.build({ email, password });
     await user.save();
 
     // Generate JWT
@@ -51,7 +52,14 @@ router.post(
       jwt: userJwt,
     };
 
-    // throw new BadRequestError("TESTING");
+    try {
+      //  await producer.send({
+      // Subjects.AuthSignedUp,
+      //  messages: [{ value: message }],
+      // });
+    } catch (error) {
+      console.error("Error publishing message:", error);
+    }
 
     res.status(201).send(user);
   }

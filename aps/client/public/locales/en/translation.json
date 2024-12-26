@@ -4,6 +4,9 @@
     "chat-link": "Chat",
     "invoices-link": "Invoices"
   },
+  "basic-layout": {
+    "logout-button": "Logout"
+  },
   "register-form": {
     "title": "Zarejestruj się",
     "email-label": "Email",

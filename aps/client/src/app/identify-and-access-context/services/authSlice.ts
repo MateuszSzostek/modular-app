@@ -12,11 +12,13 @@ import {
   SignUpConfirmationRequest,
   GetCurrentUserResponse,
   GetCurrentUserRequest,
+  SignOutResponse,
+  SignOutRequest,
 } from '../domain/identify-and-access-context'
 import { BASE_AUTH_URL } from '../domain/identify-and-access-context'
-import { setUserFieldByKey } from './userSlice'
+import { setUserFieldByKey } from './usersStoreSlice'
 import { ValidationErrorsResponse } from '../../../types'
-import { Response } from '../../../shared/types'
+import { Response } from '../../../shared/all'
 
 export const authApi = createApi({
   reducerPath: 'authApi',
@@ -82,6 +84,16 @@ export const authApi = createApi({
       transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
     }),
 
+    logout: builder.query<Response<SignOutResponse>, SignOutRequest>({
+      query: ({}) => ({
+        url: `sign-out`,
+        method: 'GET',
+      }),
+
+      transformResponse: (response: Response<SignOutResponse>) => response,
+      transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
+    }),
+
     resetPassword: builder.mutation<Response<ResetPasswordResponse>, ResetPasswordRequest>({
       query: ({ email }) => ({
         url: `reset-password`,
@@ -116,4 +128,14 @@ export const authApi = createApi({
   }),
 })
 
-export const { useSignUpMutation, useSignUpConfirmationMutation, useLoginMutation, useResetPasswordMutation, useNewPasswordMutation, useLazyGetCurrentUserQuery } = authApi
+export const {
+  useSignUpMutation,
+  useSignUpConfirmationMutation,
+  useLoginMutation,
+  useResetPasswordMutation,
+  useNewPasswordMutation,
+  useLazyGetCurrentUserQuery,
+  useGetCurrentUserQuery,
+  useLazyLogoutQuery,
+  useLogoutQuery,
+} = authApi

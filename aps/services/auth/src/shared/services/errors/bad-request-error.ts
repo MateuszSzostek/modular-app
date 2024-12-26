@@ -4,13 +4,13 @@ import { CustomError } from "./custom-error";
 export class BadRequestError extends CustomError {
   statusCode = STATUS_CODE._400;
 
-  constructor(public message: string) {
+  constructor(public message: string, public field?: string) {
     super(message);
 
     Object.setPrototypeOf(this, BadRequestError.prototype);
   }
 
   serializeErrors() {
-    return [{ messageCode: this.message }];
+    return [{ messageCode: this.message, field: this?.field }];
   }
 }

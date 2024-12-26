@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { validateRequest, BadRequestError } from "../shared/services";
 
 import { Password } from "../services/password";
-import { User } from "../models/user";
+import { Auth } from "../models/auth";
 
 const router = express.Router();
 
@@ -21,9 +21,9 @@ router.post(
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await Auth.findOne({ email });
     if (!existingUser) {
-      throw new BadRequestError("Invalid credentials");
+      throw new BadRequestError("invalid-credentials", "password");
     }
 
     const passwordsMatch = await Password.compare(
@@ -31,7 +31,7 @@ router.post(
       password
     );
     if (!passwordsMatch) {
-      throw new BadRequestError("Invalid Credentials");
+      throw new BadRequestError("invalid-credentials", "password");
     }
 
     // Generate JWT

@@ -8,7 +8,7 @@ ALLDESTINATIONS=(
     "../aps/client/src/shared"
     "../aps/services/auth/src/shared"
     "../aps/services/invoices/src/shared"
-    "../aps/services/event-bus/src/shared"
+    "../aps/services/user/src/shared"
 )
 
 # Check if source directory exists
@@ -34,7 +34,7 @@ SERVICESSOURCE="../aps/shared/src/services"
 SERVICESDESTINATIONS=(
     "../aps/services/auth/src/shared"
     "../aps/services/invoices/src/shared"
-    "../aps/services/event-bus/src/shared"
+    "../aps/services/user/src/shared"
 )
 
 # Check if source directory exists

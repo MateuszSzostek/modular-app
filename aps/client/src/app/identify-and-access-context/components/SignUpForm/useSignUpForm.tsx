@@ -25,7 +25,7 @@ export default function useSignUpForm() {
       if ('error' in response) {
         onValidationErrors(response.error as ValidationErrors)
       } else if (response.data.status !== STATUS_CODE._200) {
-        navigate(`${ROUTES.app}${ROUTES.dashboard}`)
+        navigate(`/${ROUTES.app}/${ROUTES.dashboard}`)
       }
     })
   }
@@ -34,14 +34,10 @@ export default function useSignUpForm() {
     console.log('Failed:', errorInfo)
   }
 
-  const onRegisterConfirmationModalDispose = () => {
-    navigate(ROUTES.dashboard)
-  }
-
   const onValidationErrors = (errors: ValidationErrors): void => {
     const formErrors = getErrors(errors)
     setFormErrors(formErrors)
   }
 
-  return { onFinish, onFinishFailed, onRegisterConfirmationModalDispose, result, formErrors }
+  return { onFinish, onFinishFailed, result, formErrors }
 }

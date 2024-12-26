@@ -27,7 +27,6 @@ export default function SignUpForm() {
           >
             <TextInput />
           </FormItem>
-
           <FormItem<SignUpFieldType>
             label={t('register-form.password-label')}
             name={SIGN_UP_INPUT_FIELDS.password}
@@ -36,7 +35,6 @@ export default function SignUpForm() {
           >
             <PasswordInput />
           </FormItem>
-
           <FormItem<SignUpFieldType>
             name={SIGN_UP_INPUT_FIELDS.privacyPolicy}
             valuePropName="checked"
