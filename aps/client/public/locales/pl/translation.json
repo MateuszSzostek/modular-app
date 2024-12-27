@@ -58,7 +58,7 @@
     "required": "To pole jest wymagane",
     "email": {
       "email-must-be-valid": "Podany email jest nie wazny",
-      "in-use": "Email in use"
+      "email-in-use": "Email in use"
     },
     "password": {
       "email-must-be-valid": "Email musi być poprawny",

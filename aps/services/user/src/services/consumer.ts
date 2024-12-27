@@ -1,6 +1,6 @@
 import { Subjects } from "../shared/services";
 
-const { consumer } = require("./kafka");
+const { consumer } = require("../kafka");
 
 interface EachMessagePayload {
   topic: string;
@@ -10,7 +10,7 @@ interface EachMessagePayload {
   };
 }
 
-(async () => {
+export const startKafkaConsumer = async () => {
   try {
     await consumer.connect();
     console.log("Kafka Consumer connected");
@@ -34,9 +34,11 @@ interface EachMessagePayload {
           partition,
           value: messageValue,
         });
+
+        // You can add business logic here
       },
     });
   } catch (error) {
     console.error("Error in Kafka Consumer:", error);
   }
-})();
+};

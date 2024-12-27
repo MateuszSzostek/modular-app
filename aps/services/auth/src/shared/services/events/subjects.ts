@@ -1,7 +1,7 @@
 export enum Subjects {
   //Auth
-  AuthSignedUp = "auth:signed-up",
+  AuthSignedUp = "auth.signed-up",
 
   //User
-  UserUpdated = "user:updated",
+  UserUpdated = "user.updated",
 }

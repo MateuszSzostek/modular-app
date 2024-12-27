@@ -3,7 +3,9 @@ const { Kafka } = require("kafkajs");
 // Create Kafka instance
 const kafka = new Kafka({
   clientId: "auth-service",
-  brokers: ["api.localhost:82/api/events/"],
+  brokers: ["kafka:9092"],
+  requestTimeout: 30000, // 30 seconds
+  connectionTimeout: 10000, // 10 seconds
 });
 
 const producer = kafka.producer();

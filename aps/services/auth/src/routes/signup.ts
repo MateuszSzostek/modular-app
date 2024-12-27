@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
-import { validateRequest, BadRequestError } from "../shared/services";
+import { validateRequest, BadRequestError, Subjects } from "../shared/services";
 const { producer } = require("../kafka");
 
 import { Auth } from "../models/auth";
@@ -53,10 +53,10 @@ router.post(
     };
 
     try {
-      //  await producer.send({
-      // Subjects.AuthSignedUp,
-      //  messages: [{ value: message }],
-      // });
+      await producer.send({
+        topic: Subjects.AuthSignedUp,
+        messages: [{ value: "OWN MESSAGE" }],
+      });
     } catch (error) {
       console.error("Error publishing message:", error);
     }

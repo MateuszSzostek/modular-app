@@ -70,7 +70,7 @@ services:
       context: ../aps/services/user
       dockerfile: Dockerfile
     ports:
-      - "3002:3004" # Map port 3003 in the container to port 3003 on the host
+      - "3004:3004" # Map port 3003 in the container to port 3003 on the host
     volumes:
       - ../aps/services/user:/app
     environment:
@@ -135,8 +135,15 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL: PLAINTEXT
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_LISTENER_NAME_PLATEXT_LISTENER: PLAINTEXT
+      KAFKA_REPLICATION_FACTOR: 1 # Ensure replication factor is set to 1
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+    volumes:
+      - /tmp/kafka-logs
     networks:
       - aps-network
 
@@ -147,3 +154,4 @@ networks:
 volumes:
   auth-mongo-data:
   invoices-mongo-data:
+  user-mongo-data:

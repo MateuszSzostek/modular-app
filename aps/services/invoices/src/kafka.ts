@@ -3,7 +3,7 @@ const { Kafka } = require("kafkajs");
 // Create Kafka instance
 const kafka = new Kafka({
   clientId: "invoices-service",
-  brokers: ["api.localhost:82/api/events/"],
+  brokers: ["kafka:9092"],
 });
 
 const producer = kafka.producer();

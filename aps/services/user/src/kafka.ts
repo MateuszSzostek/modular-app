@@ -5,7 +5,9 @@ const { Kafka } = require("kafkajs");
 // Create Kafka instance
 const kafka = new Kafka({
   clientId: "user-service",
-  brokers: ["api.localhost:82/api/events/"],
+  brokers: ["kafka:9092"],
+  requestTimeout: 30000, // 30 seconds
+  connectionTimeout: 10000, // 10 seconds
 });
 
 const producer = kafka.producer();
@@ -16,6 +18,6 @@ const connectProducer = async () => {
 };
 
 // Kafka consumer instance
-const consumer: Consumer = kafka.consumer({ groupId: "typescript-group" });
+const consumer: Consumer = kafka.consumer({ groupId: "user-service-group" });
 
 module.exports = { producer, consumer, connectProducer };

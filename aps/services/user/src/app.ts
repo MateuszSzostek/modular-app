@@ -4,7 +4,7 @@ import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError } from "./shared/services";
 import { currentUserRouter } from "./routes/current-user";
-
+import { startKafkaConsumer } from "./services/consumer";
 const { connectProducer } = require("./kafka");
 const cors = require("cors");
 const app = express();
@@ -33,6 +33,7 @@ app.use(json());
 // Initialize Kafka Producer
 (async () => {
   await connectProducer();
+  await startKafkaConsumer();
 })();
 
 // Cookie session middleware
