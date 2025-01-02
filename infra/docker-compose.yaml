@@ -130,6 +130,7 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:latest
+    user: root
     ports:
       - "9092:9092"
     environment:
@@ -139,11 +140,14 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL: PLAINTEXT
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
-      KAFKA_LISTENER_NAME_PLATEXT_LISTENER: PLAINTEXT
-      KAFKA_REPLICATION_FACTOR: 1 # Ensure replication factor is set to 1
-      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_DELETE_TOPIC_ENABLE: "true"
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
     volumes:
-      - /tmp/kafka-logs
+      - ./kafka-data:/var/lib/kafka/data
+    depends_on:
+      - zookeeper
     networks:
       - aps-network
 
