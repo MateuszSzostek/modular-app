@@ -4,7 +4,7 @@ import storage from 'redux-persist/lib/storage'
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
 import { combineReducers } from '@reduxjs/toolkit'
 import { authApi } from '../../app/identify-and-access-context/services/authSlice'
-import userReducer from '../../app/identify-and-access-context/services/usersStoreSlice'
+//import userReducer from '../../app/identify-and-access-context/services/userStoreSlice'
 
 //import { createFilter } from "redux-persist-transform-filter"
 
@@ -19,7 +19,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   authApi: authApi.reducer,
-  user: userReducer,
+  //user: userReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers)
@@ -32,6 +32,7 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat([authApi.middleware]),
+  //@ts-ignore
   devTools: process.env.NODE_ENV !== 'production',
 })
 

@@ -18,6 +18,18 @@ export const MESSAGE_KEY = {
   NOT_AUTHORIZED: "not-authorized",
 
   /**
+   * Email must be valid
+   * todo
+   */
+  EMAIL_MUST_BE_VALID: "email-must-be-valid",
+
+  /**
+   * Email In Use
+   * todo
+   */
+  EMAIL_IN_USE: "email-in-use",
+
+  /**
    * Password Must Not Be Empty
    * Indicates that the password field cannot be left empty.
    */
@@ -62,6 +74,24 @@ export const MESSAGE_KEY = {
    * Indicates that the request contains invalid or missing parameters.
    */
   INVALID_REQUEST_PARAMETERS: "invalid-request-parameters",
+
+  /**
+   * Invalid Credentials
+   * todo
+   */
+  INVALID_CREDENTIALS: "invalid-credentials",
+};
+
+/**
+ * todo.
+ *
+ * @constant
+ * @type {Object<string, string>}
+ */
+export const FIELD_KEY = {
+  EMAIL: "email",
+  PASSWORD: "password",
+  PASSWORD_CONFIRMATION: "password-confirmation",
 };
 
 /**

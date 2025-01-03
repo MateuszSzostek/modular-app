@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 import { Password } from "../services/password";
-
-interface AuthAttrs {
-  email: string;
-  password: string;
-}
+import { AuthAttrs } from "../shared/services";
 
 interface AuthModel extends mongoose.Model<AuthDoc> {
   build(attrs: AuthAttrs): AuthDoc;

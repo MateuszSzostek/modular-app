@@ -4,8 +4,8 @@ import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError } from "./shared/services";
 import { currentUserRouter } from "./routes/current-user";
-import { startKafkaConsumer } from "./services/consumer";
-const { connectProducer } = require("./kafka");
+import { connectProducer, startKafkaConsumer } from "./kafka";
+
 const cors = require("cors");
 const app = express();
 

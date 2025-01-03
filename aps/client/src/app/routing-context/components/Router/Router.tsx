@@ -11,9 +11,9 @@ import LandingLayout from '../../../layout-context/components/LandingLayout/Land
 import AdminAppLayout from '../../../layout-context/components/AdminAppLayout/AdminAppLayout'
 
 export default function AppRouter() {
-  const { isAuthenticated } = useAuth()
+  // const { isAuthenticated } = useAuth()
 
-  console.log(isAuthenticated)
+  //console.log(isAuthenticated)
 
   return (
     <Router>
@@ -30,8 +30,8 @@ export default function AppRouter() {
             <Route path={ROUTES.dashboard} element={<DashboardView />} />
           </Route>
         </Route>
-        <Route path="/" element={isAuthenticated ? <Navigate to={`/${ROUTES.app}/${ROUTES.dashboard}`} replace /> : <Navigate to={`/${ROUTES.auth}/${ROUTES.login}`} replace />} />
-        <Route path="*" element={isAuthenticated ? <Navigate to={`/${ROUTES.app}/${ROUTES.dashboard}`} replace /> : <Navigate to={`/${ROUTES.auth}/${ROUTES.login}`} replace />} />
+        <Route path="/" element={false ? <Navigate to={`/${ROUTES.app}/${ROUTES.dashboard}`} replace /> : <Navigate to={`/${ROUTES.auth}/${ROUTES.login}`} replace />} />
+        <Route path="*" element={false ? <Navigate to={`/${ROUTES.app}/${ROUTES.dashboard}`} replace /> : <Navigate to={`/${ROUTES.auth}/${ROUTES.login}`} replace />} />
       </Routes>
     </Router>
   )

@@ -5,6 +5,8 @@ import { app } from "./app";
 const start = async () => {
   console.log("checking workflow for merge...");
 
+  const PORT = 3002;
+
   if (!process.env.JWT_KEY) {
     throw new Error("JWT_KEY must be defined");
   }
@@ -23,8 +25,8 @@ const start = async () => {
     console.error(err);
   }
 
-  app.listen(3002, () => {
-    console.log("Listening on port 3002!!!!!!!!");
+  app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}!!!!!!!!`);
   });
 };
 

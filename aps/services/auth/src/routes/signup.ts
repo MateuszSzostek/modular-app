@@ -1,8 +1,14 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
-import { validateRequest, BadRequestError, Subjects } from "../shared/services";
-const { producer } = require("../kafka");
+import {
+  validateRequest,
+  BadRequestError,
+  Subjects,
+  AuthSignedUpMessage,
+} from "../shared/services";
+import { MESSAGE_KEY, FIELD_KEY } from "../shared/all";
+import { producer } from "../producer";
 
 import { Auth } from "../models/auth";
 
@@ -11,19 +17,25 @@ const router = express.Router();
 router.post(
   "/api/auth/sign-up",
   [
-    body("email").isEmail().withMessage("email-must-be-valid"),
-    body("password")
+    body(FIELD_KEY.EMAIL)
+      .isEmail()
+      .withMessage(MESSAGE_KEY.EMAIL_MUST_BE_VALID),
+    body(FIELD_KEY.PASSWORD)
       .trim()
       .notEmpty()
-      .withMessage("password-must-not-be-empty")
+      .withMessage(MESSAGE_KEY.PASSWORD_MUST_NOT_BE_EMPTY)
       .isLength({ min: 7 })
-      .withMessage("password-must-be-at-least-7-characters-long")
+      .withMessage(MESSAGE_KEY.PASSWORD_MUST_BE_AT_LEAST_7_CHARACTERS_LONG)
       .matches(/[A-Z]/)
-      .withMessage("password-must-contain-at-least-one-uppercase-letter")
+      .withMessage(
+        MESSAGE_KEY.PASSWORD_MUST_CONTAIN_AT_LEAST_ONE_UPPERCASE_LETTER
+      )
       .matches(/\d/)
-      .withMessage("password-must-contain-at-least-one-number")
+      .withMessage(MESSAGE_KEY.PASSWORD_MUST_CONTAIN_AT_LEAST_ONE_NUMBER)
       .matches(/[@$!%*?&]/)
-      .withMessage("password-must-contain-at-least-one-special-character"),
+      .withMessage(
+        MESSAGE_KEY.PASSWORD_MUST_CONTAIN_AT_LEAST_ONE_SPECIAL_CHARACTER
+      ),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
@@ -32,7 +44,7 @@ router.post(
     const existingUser = await Auth.findOne({ email });
 
     if (existingUser) {
-      throw new BadRequestError("email-in-use", "email");
+      throw new BadRequestError(MESSAGE_KEY.EMAIL_IN_USE, FIELD_KEY.EMAIL);
     }
 
     const user = Auth.build({ email, password });
@@ -53,9 +65,14 @@ router.post(
     };
 
     try {
+      const message: AuthSignedUpMessage = {
+        userId: user?.id,
+        email: user?.email,
+      };
+
       await producer.send({
         topic: Subjects.AuthSignedUp,
-        messages: [{ value: "OWN MESSAGE" }],
+        messages: [{ value: JSON.stringify(message) }],
       });
     } catch (error) {
       console.error("Error publishing message:", error);
