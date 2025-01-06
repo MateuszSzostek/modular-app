@@ -82,6 +82,4 @@ router.post(
   }
 );
 
-//test
-
 export { router as signupRouter };
