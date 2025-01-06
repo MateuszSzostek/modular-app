@@ -10,6 +10,7 @@ ALLDESTINATIONS=(
     "../aps/services/auth/src/shared"
     "../aps/services/invoices/src/shared"
     "../aps/services/user/src/shared"
+    "../aps/services/profile/src/shared"
 )
 
 # Destination directories for services sources
@@ -17,6 +18,7 @@ SERVICESDESTINATIONS=(
     "../aps/services/auth/src/shared"
     "../aps/services/invoices/src/shared"
     "../aps/services/user/src/shared"
+    "../aps/services/profile/src/shared"
 )
 
 # Remove all destination directories at the start

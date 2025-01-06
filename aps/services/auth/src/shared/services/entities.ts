@@ -11,3 +11,8 @@ export interface AuthAttrs {
   email: string;
   password: string;
 }
+
+export interface ProfileAttrs {
+  ownerId: string;
+  name: string;
+}

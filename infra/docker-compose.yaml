@@ -82,6 +82,23 @@ services:
     networks:
       - aps-network
 
+  profile-service:
+    build:
+      context: ../aps/services/profile
+      dockerfile: Dockerfile
+    ports:
+      - "3004:3004" # Map port 3003 in the container to port 3003 on the host
+    volumes:
+      - ../aps/services/profile:/app
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://profile_db:27017/profile_db
+      - JWT_KEY=your_jwt_secret_key
+    depends_on:
+      - profile_db
+    networks:
+      - aps-network
+
   auth_db:
     image: mongo:8.0.0-rc13-jammy
     container_name: auth_db
@@ -115,6 +132,18 @@ services:
       - $MONGODB_USER_LOCAL_PORT:$MONGODB_USER_DOCKER_PORT
     volumes:
       - user-mongo-data:/data/db
+    networks:
+      - aps-network
+
+  profile_db:
+    image: mongo:8.0.0-rc13-jammy
+    container_name: profile_db
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $MONGODB_PROFILE_LOCAL_PORT:$MONGODB_PROFILE_DOCKER_PORT
+    volumes:
+      - profile-mongo-data:/data/db
     networks:
       - aps-network
 
@@ -159,3 +188,4 @@ volumes:
   auth-mongo-data:
   invoices-mongo-data:
   user-mongo-data:
+  profile-mongo-data:

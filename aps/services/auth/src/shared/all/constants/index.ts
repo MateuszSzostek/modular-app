@@ -89,6 +89,7 @@ export const MESSAGE_KEY = {
  * @type {Object<string, string>}
  */
 export const FIELD_KEY = {
+  NAME: "name",
   EMAIL: "email",
   PASSWORD: "password",
   PASSWORD_CONFIRMATION: "password-confirmation",
