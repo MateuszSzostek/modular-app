@@ -4,6 +4,8 @@ import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError } from "./shared/services";
 import { addProfileRouter } from "./routes/add-profile";
+import { getProfileRouter } from "./routes/get-profile";
+import { getProfilesRouter } from "./routes/get-profiles";
 //import { connectProducer, startKafkaConsumer } from "./kafka";
 
 const cors = require("cors");
@@ -48,6 +50,8 @@ app.use(
 
 // Routes
 app.use(addProfileRouter);
+app.use(getProfileRouter);
+app.use(getProfilesRouter);
 
 // Handle unknown routes
 app.all("*", async (req, res) => {

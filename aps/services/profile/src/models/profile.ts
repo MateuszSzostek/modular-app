@@ -9,10 +9,7 @@ interface ProfileModel extends mongoose.Model<ProfileDoc> {
 
 // An interface that describes the properties
 // that a Profile Document has
-interface ProfileDoc extends mongoose.Document {
-  ownerId: string;
-  name: string;
-}
+interface ProfileDoc extends ProfileAttrs, mongoose.Document {}
 
 const profileSchema = new mongoose.Schema({
   ownerId: {

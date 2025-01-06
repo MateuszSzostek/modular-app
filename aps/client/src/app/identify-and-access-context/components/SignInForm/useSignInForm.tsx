@@ -3,14 +3,14 @@ import { type FormProps } from 'antd'
 import { SignInFieldType } from '../../domain/identify-and-access-context'
 import { useLoginMutation, useLazyGetCurrentUserQuery } from '../../services/authSlice'
 import { useNavigate } from 'react-router-dom'
-import { ParsedValidationErrors, ValidationErrors } from '../../../../types'
-import { getErrors } from '../../../../utils'
+import { ValidationErrors } from '../../../../types'
+import { ErrorMap, getErrors } from '../../../../utils'
 import { ROUTES } from '../../../routing-context/domain/router-context'
 
 export default function useLoginForm() {
   const [login, result] = useLoginMutation()
   const [triggerGetCurrentUser] = useLazyGetCurrentUserQuery({})
-  const [formErrors, setFormErrors] = useState<ParsedValidationErrors>({})
+  const [formErrors, setFormErrors] = useState<ErrorMap>({})
   const navigate = useNavigate()
 
   const onFinish: FormProps<SignInFieldType>['onFinish'] = async (values) => {

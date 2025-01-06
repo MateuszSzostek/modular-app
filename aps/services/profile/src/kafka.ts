@@ -1,16 +1,15 @@
-/*
 import {
   AuthSignedUpMessage,
   EachMessagePayload,
   Subjects,
 } from "./shared/services";
-import UserProcessor from "./processors/profileProcessor";
+import ProfileProcessor from "./processors/profileProcessor";
 
 import { Consumer, Kafka } from "kafkajs";
 
 // Create Kafka instance
 const kafka = new Kafka({
-  clientId: "user-service",
+  clientId: "profile-service",
   brokers: ["kafka:9092"],
   requestTimeout: 30000, // 30 seconds
   connectionTimeout: 10000, // 10 seconds
@@ -23,14 +22,11 @@ const connectProducer = async () => {
   console.log("Kafka Producer connected");
 };
 
-// Kafka consumer instance
-//const consumer: Consumer = kafka.consumer({ groupId: "user-service-group" });
-
-const consumer: Consumer = kafka.consumer({ groupId: "user-service-group" });
+const consumer: Consumer = kafka.consumer({ groupId: "profile-service-group" });
 
 export const startKafkaConsumer = async () => {
   try {
-    const userProcessor = new UserProcessor();
+    const profileProcessor = new ProfileProcessor();
 
     await consumer.connect();
     console.log("Kafka Consumer connected");
@@ -52,13 +48,9 @@ export const startKafkaConsumer = async () => {
           case Subjects.AuthSignedUp:
             const values: AuthSignedUpMessage =
               message.value?.toString() as unknown as AuthSignedUpMessage;
-            userProcessor.addUser({
-              userId: values?.userId,
-              email: values?.email,
-              name: "",
-              surname: "",
-              birthDate: "",
-              identifier: "",
+            profileProcessor.addProfile({
+              name: values?.email,
+              ownerId: values?.userId,
             });
         }
       },
@@ -69,4 +61,3 @@ export const startKafkaConsumer = async () => {
 };
 
 export { producer, connectProducer };
-*/

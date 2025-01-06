@@ -1,20 +1,50 @@
-/*
-import { ProfileAttrs } from "../shared/services";
+import { NotFoundError, ProfileAttrs } from "../shared/services";
 import { Profile } from "../models/profile";
 
 export default class ProfileProcessor {
-  async addUser(userAttrs: ProfileAttrs) {
-    const existingUser = await Profile.findOne({ email: userAttrs?.email });
+  async addProfile(profileAttrs: ProfileAttrs) {
+    const existingProfile = await Profile.findOne({
+      ownerId: profileAttrs?.ownerId,
+      name: profileAttrs?.name,
+    });
 
-    if (existingUser) {
+    if (existingProfile) {
       console.error(
-        `User already exists: email: ${userAttrs?.email} , id: ${userAttrs?.userId}`
+        `Profile already exists: email: ${profileAttrs?.name} , ownerId: ${profileAttrs?.ownerId}`
       );
       return;
     }
 
-    const user = User.build({ ...userAttrs });
-    await user.save();
+    const profile = Profile.build({
+      name: profileAttrs?.name,
+      ownerId: profileAttrs?.ownerId,
+    });
+    await profile.save();
+
+    return profile;
+  }
+
+  async getProfileById(id: string) {
+    const existingProfile = await Profile.findOne({
+      id,
+    });
+
+    if (!existingProfile) {
+      throw new NotFoundError();
+    }
+
+    return existingProfile;
+  }
+
+  async getProfiles(ownerId: string) {
+    const profiles = await Profile.find({
+      ownerId,
+    });
+
+    if (!profiles) {
+      throw new NotFoundError();
+    }
+
+    return profiles;
   }
 }
-  */

@@ -87,7 +87,7 @@ services:
       context: ../aps/services/profile
       dockerfile: Dockerfile
     ports:
-      - "3004:3004" # Map port 3003 in the container to port 3003 on the host
+      - "3005:3005" # Map port 3005 in the container to port 3005 on the host
     volumes:
       - ../aps/services/profile:/app
     environment:
