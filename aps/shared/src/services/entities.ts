@@ -16,3 +16,32 @@ export interface ProfileAttrs {
   ownerId: string;
   name: string;
 }
+
+export interface InvoiceAttrs {
+  ownerId: string;
+  invoiceNumber: string;
+  receiverId: string;
+  receiverName: string;
+  language: string;
+  createdAt: string;
+  updatedAt: string;
+  issuedAt: string;
+  status: "draft" | "issued";
+  isPaid: boolean;
+  currency: string;
+  items: InvoiceItem[];
+  totalNetPrice: number;
+  totalVatPrice: number;
+  totalPrice: number;
+  note: string;
+}
+
+export interface InvoiceItem {
+  name: string;
+  quantity: number;
+  unitOfMeasurement: string;
+  price: number;
+  vat: number;
+  vatPrice: number;
+  totalPrice: number;
+}

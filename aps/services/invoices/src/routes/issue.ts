@@ -36,7 +36,7 @@ router.post(
     } = req.body;
 
     const invoice = Invoice.build({
-      ownerId: req.currentUser!.id,
+      ownerId,
       invoiceNumber,
       receiverId,
       receiverName,
@@ -54,6 +54,13 @@ router.post(
       note,
     });
     await ticket.save();
+    new TicketCreatedPublisher(natsWrapper.client).publish({
+      id: ticket.id,
+      title: ticket.title,
+      price: ticket.price,
+      userId: ticket.userId,
+      version: ticket.version,
+    });
 
     res.status(201).send(ticket);
   }
