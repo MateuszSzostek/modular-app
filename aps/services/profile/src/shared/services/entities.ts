@@ -19,7 +19,7 @@ export interface ProfileAttrs {
 
 export interface InvoiceAttrs {
   ownerId: string;
-  invoiceNumbe: string;
+  invoiceNumber: string;
   receiverId: string;
   receiverName: string;
   language: string;

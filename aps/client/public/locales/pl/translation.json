@@ -1,8 +1,14 @@
 {
   "navigation": {
-    "dashboard-link": "Dashboard",
-    "chat-link": "Chat",
-    "invoices-link": "Invoices"
+    "finance-select": "Finance",
+    "invoices-link": "Invoices",
+    "costs-link": "Expenses",
+    "reports-link": "Reports",
+    "projects-management-select": "Project Management",
+    "projects-link": "Projects",
+    "inventory-management-select": "Inventory Management",
+    "hr-select": "HR",
+    "crm-select": "CRM"
   },
   "basic-layout": {
     "logout-button": "Logout"

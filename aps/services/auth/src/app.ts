@@ -19,6 +19,8 @@ const corsOptions = {
     "http://client:5173",
     "http://0.0.0.0:5173",
   ],
+  //enable on prod
+  cors: false,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true, // Allow cookies to be sent

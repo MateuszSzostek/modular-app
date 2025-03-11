@@ -4,7 +4,7 @@ import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError } from "./shared/services";
 import { addProfileRouter } from "./routes/add-profile";
-import { getProfileRouter } from "./routes/get-profile";
+import { getProfileByIdRouter } from "./routes/get-profile-by-id";
 import { getProfilesRouter } from "./routes/get-profiles";
 //import { connectProducer, startKafkaConsumer } from "./kafka";
 
@@ -50,7 +50,7 @@ app.use(
 
 // Routes
 app.use(addProfileRouter);
-app.use(getProfileRouter);
+app.use(getProfileByIdRouter);
 app.use(getProfilesRouter);
 
 // Handle unknown routes

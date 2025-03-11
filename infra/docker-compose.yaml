@@ -10,6 +10,7 @@ services:
     depends_on:
       - client
       - auth-service
+      
       - invoices-service
     networks:
       - aps-network
