@@ -68,21 +68,25 @@ export class AuthController {
         `User with email: ${signInDto?.email} does not exists in database.`,
       );
       return res.status(HttpStatus.BAD_REQUEST).json({
-        messages: AUTH_RESPONSE_CODES.WRONG_SIGN_IN_DATA,
+        messages: [AUTH_RESPONSE_CODES.WRONG_SIGN_IN_DATA],
+        statusCode: HttpStatus.BAD_REQUEST,
       });
     }
 
     const isValidPassword = await this.authService.validateUser(
-      userAuthData?._id,
+      userAuthData?.userId,
       signInDto?.password,
     );
+
+    this.logger.log(isValidPassword);
 
     if (!isValidPassword) {
       this.logger.log(
         `User with email: ${signInDto?.email} entered wrong password`,
       );
       return res.status(HttpStatus.BAD_REQUEST).json({
-        messages: AUTH_RESPONSE_CODES.WRONG_SIGN_IN_DATA,
+        messages: [AUTH_RESPONSE_CODES.WRONG_SIGN_IN_DATA],
+        statusCode: HttpStatus.BAD_REQUEST,
       });
     }
 
@@ -91,9 +95,14 @@ export class AuthController {
       userAuthData?.email,
     );
 
+    this.logger.log(
+      `User with email: ${signInDto?.email} logged in successfully`,
+    );
+
     res.cookie('auth_token', accessToken, { httpOnly: true, secure: true });
     return res.status(HttpStatus.OK).json({
-      message: `User with email: ${signInDto?.email} logged in successfully`,
+      messages: [AUTH_RESPONSE_CODES.SIGNED_IN_SUCCESSFULLY],
+      statusCode: HttpStatus.OK,
     });
   }
 
@@ -115,6 +124,7 @@ export class AuthController {
     if (!hashedPassword) {
       return res.status(HttpStatus.BAD_REQUEST).json({
         messages: [`${CODES.SERVER}.${CODES.SOMETHING_WENT_WRONG}`],
+        statusCode: HttpStatus.BAD_REQUEST,
       });
     }
 
@@ -127,7 +137,8 @@ export class AuthController {
         `Someone with email: ${signUpDto?.email} already exists in database.`,
       );
       return res.status(HttpStatus.BAD_REQUEST).json({
-        messages: AUTH_RESPONSE_CODES.USER_AUTH_DATA_ALREADY_EXISTS,
+        messages: [AUTH_RESPONSE_CODES.USER_AUTH_DATA_ALREADY_EXISTS],
+        statusCode: HttpStatus.BAD_REQUEST,
       });
     }
 
@@ -154,17 +165,21 @@ export class AuthController {
     );
 
     return res.status(HttpStatus.BAD_REQUEST).json({
-      messages: AUTH_RESPONSE_CODES.REGISTERED_SUCCESSFULLY,
+      messages: [AUTH_RESPONSE_CODES.REGISTERED_SUCCESSFULLY],
+      statusCode: HttpStatus.BAD_REQUEST,
     });
   }
 
-  @Post('logout')
+  @Post('sign-out')
   @ApiOperation({ summary: 'User logout' })
   @ApiResponse({ status: 200, description: 'Logged out successfully' })
   @UseGuards(AuthGuard)
   async logout(@Res() res: Response) {
     res.clearCookie('auth_token');
-    res.status(HttpStatus.OK).json({ message: `User logged out successfully` });
+    res.status(HttpStatus.OK).json({
+      messages: [AUTH_RESPONSE_CODES.SIGNED_OUT_SUCCESSFULLY],
+      statusCode: HttpStatus.OK,
+    });
   }
 
   @Post('is-authenticated')
@@ -179,11 +194,13 @@ export class AuthController {
         isAuthenticated: true,
         user,
         messages: [AUTH_RESPONSE_CODES.IS_AUTHENTICATED],
+        statusCode: HttpStatus.OK,
       });
     } else {
       return res.status(HttpStatus.UNAUTHORIZED).json({
         isAuthenticated: false,
         messages: [AUTH_RESPONSE_CODES.IS_NOT_AUTHENTICATED],
+        statusCode: HttpStatus.UNAUTHORIZED,
       });
     }
   }

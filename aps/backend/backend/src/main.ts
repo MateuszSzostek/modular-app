@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import { ValidationPipe } from '@nestjs/common';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,6 +18,7 @@ async function bootstrap() {
     }),
   );
 
+  app.use(cookieParser());
   app.use(passport.initialize());
   app.use(passport.session());
 

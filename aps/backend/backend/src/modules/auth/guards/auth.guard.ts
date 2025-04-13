@@ -1,11 +1,12 @@
 import {
   CanActivate,
   ExecutionContext,
+  HttpStatus,
   Injectable,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtService } from '@nestjs/jwt';
+import { AUTH_RESPONSE_CODES } from '../utils/auth.response-codes';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -13,18 +14,32 @@ export class AuthGuard implements CanActivate {
 
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest<Request>();
+    const response = context.switchToHttp().getResponse<Response>();
+
     const token = request.cookies?.auth_token;
 
     if (!token) {
-      throw new UnauthorizedException('Not authenticated');
+      this.sendUnauthorizedResponse(response);
+      return false;
     }
 
     try {
-      //@ts-ignore
       request.user = this.jwtService.verify(token);
+
       return true;
     } catch {
-      throw new UnauthorizedException('Invalid token');
+      this.sendUnauthorizedResponse(response);
+      return false;
     }
+  }
+
+  private sendUnauthorizedResponse(response: Response): boolean {
+    //@ts-ignore
+    response.status(HttpStatus.UNAUTHORIZED).json({
+      isAuthenticated: false,
+      messages: [AUTH_RESPONSE_CODES.IS_NOT_AUTHENTICATED],
+      statusCode: HttpStatus.UNAUTHORIZED,
+    });
+    return false;
   }
 }

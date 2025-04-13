@@ -110,7 +110,7 @@
         ]
       }
     },
-    "/auth/logout": {
+    "/auth/sign-out": {
       "post": {
         "operationId": "AuthController_logout",
         "parameters": [],

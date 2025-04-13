@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserAuthData } from '../models/auth.model';
-import * as jwt from 'jsonwebtoken';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +12,7 @@ export class AuthService {
     private readonly usersService: UserService,
     @InjectModel('UserAuthDataSchema')
     private readonly userAuthDataModel: Model<UserAuthData>,
+    private readonly jwtService: JwtService,
   ) {}
 
   private readonly logger = new Logger(AuthService.name);
@@ -36,16 +37,16 @@ export class AuthService {
     hashedPassword,
     isEmailConfirmed: boolean,
   ) {
-    const newUserAUthData = new this.userAuthDataModel({
+    const newUserAuthData = new this.userAuthDataModel({
       userId,
       email,
       password: hashedPassword,
       isEmailConfirmed,
     });
 
-    await newUserAUthData.save();
+    await newUserAuthData.save();
 
-    return newUserAUthData;
+    return newUserAuthData;
   }
 
   async doesUserExists(userEmail: string) {
@@ -64,10 +65,15 @@ export class AuthService {
   }
 
   async validateUser(userId: string, password: string): Promise<any> {
+    this.logger.verbose(userId);
     const userAuthData = await this.getUserAuthDataByUserId(userId);
     let passwordValid;
+
+    this.logger.verbose(userAuthData);
+
     if (userAuthData) {
       passwordValid = await bcrypt.compare(password, userAuthData.password);
+      this.logger.verbose(passwordValid);
     }
     if (userAuthData && passwordValid) {
       return true;
@@ -77,9 +83,7 @@ export class AuthService {
 
   async generateAccessToken(userId: string, email: string): Promise<string> {
     const payload = { userId, email };
-    const accessToken = jwt.sign(payload, this.jwtSecret, {
-      expiresIn: this.jwtExpiresIn,
-    });
+    const accessToken = this.jwtService.sign(payload);
 
     this.logger.verbose(`Generated access token for user: ${userId}`);
     return accessToken;
