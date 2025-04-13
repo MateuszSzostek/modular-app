@@ -8,5 +8,8 @@ export abstract class CustomError extends Error {
   }
 
   // Abstract method to ensure consistent error response structure
-  abstract serializeErrors(): { messageCode: string; field?: string }[];
+  abstract serializeErrors(): {
+    status: number;
+    errors: { messageCode: string; field?: string }[];
+  };
 }
