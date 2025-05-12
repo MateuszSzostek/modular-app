@@ -11,6 +11,8 @@ export const ROUTES = {
   register: 'register',
   newPassword: 'new-password',
   resetPassword: 'reset-password',
+  forgotPassword: 'forgot-password',
   dashboard: 'dashboard',
   invoices: 'invoices',
+  confirmAccountView: 'confirm-account',
 }

@@ -1,0 +1,227 @@
+$body-color: #1D1F20;
+$glow-color: #FF2995;
+
+$glow-color-1: #8A2BE2; // Neon Purple
+$glow-color-2: #FFD700; // Neon Gold
+$glow-color-3: #FF69B4; // Neon Pink
+$glow-color-4: #00FFFF; // Neon Cyan
+
+$bg-color: darken($glow-color, 40);
+
+body{
+  margin: 0;
+  background-color: $body-color;
+}
+
+.container{
+  position: absolute;
+  margin: auto;
+  left:0; right:0;
+  width: 60%;
+  height: 100%;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+  align-items: center;
+  -webkit-align-items: center;
+  align-content: center;
+  -webkit-align-content: center;
+}
+
+.title{
+  position: absolute;
+  margin: auto;
+  left:0; right:0; top:auto; bottom:10px;
+  /* background:pink; */
+  width: 190px;
+  height: 20px;
+  font-family: Sans-serif;
+  font-weight: 100;
+  color: darken($glow-color-1,30);
+}
+
+@mixin grid{
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  align-content: center;
+  -webkit-align-content: center;
+}
+
+.grid-big{
+  @include grid;
+  width: 70px;
+  height: 70px;
+}
+
+.grid-mini{
+  position: absolute;
+  margin: auto;
+  left:0; right:0px; top:auto; bottom:5px;
+  @include grid;
+  width: 25px;
+  height: 35px;
+}
+
+@mixin cell{
+  width: 10px;
+  height: 10px;
+  background: $bg-color;
+  border-radius: 50%;
+  margin: 2px;
+}
+
+/****** LOADING GRID #1 ******/
+
+$cell1-order: (7,8,9,12,14,17,18,19);
+
+//outer layer
+.cell-1{
+  @include cell;
+  animation: quick-glow 1.25s 0.3s infinite linear;
+  -webkit-animation: quick-glow 1.25s 0.3s infinite linear;
+}
+
+//middle layer
+@for $i from 0 to length($cell1-order) {
+  .cell-1:nth-child(#{nth($cell1-order, $i+1)}){
+    animation: quick-glow 1.25s 0.15s infinite linear;
+    -webkit-animation: quick-glow 1.25s 0.15s infinite linear;
+  }
+}
+
+//center cell
+.cell-1:nth-child(13){
+  animation: quick-glow 1.25s infinite linear;
+  -webkit-animation: quick-glow 1.25s infinite linear;
+}
+
+
+/****** LOADING GRID #2 ******/
+
+$cell2-order: (1,2,3,4,5,10,15,20,25,24,23,22,21,16,11,6,7,8,9,14,19,18,17,12,13);
+
+.cell-2{
+  @include cell;
+}
+
+@for $i from 0 to length($cell2-order) {
+  .cell-2:nth-child(#{nth($cell2-order, $i+1)}){
+    animation: quick-glow 2.5s unquote( (0.1 * $i) + 's') infinite linear;
+    -webkit-animation: quick-glow 2.5s unquote( (0.1 * $i) + 's') infinite linear;
+  }
+}
+
+/****** LOADING GRID #3 ******/
+
+.cell-3{
+  @include cell;
+}
+
+.cell-3:nth-child(2n+1){
+  animation: glow 1.2s infinite linear;
+  -webkit-animation: glow 1.2s infinite linear;
+}
+
+.cell-3:nth-child(2n){
+  animation: glow 1.2s 0.6s infinite linear;
+  -webkit-animation: glow 1.2s 0.6s infinite linear;
+}
+
+
+/****** LOADING GRID #4 ******/
+
+.grid-big:nth-child(4){
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+}
+
+.cell-4{
+  @include cell;
+}
+
+$tick: 5;
+@for $i from 1 to 26 {
+  .cell-4:nth-child(#{$i}){
+    animation: quick-glow 1s unquote( (0.1 * $tick) + 's') infinite linear;
+    -webkit-animation: quick-glow 1s unquote( (0.1 * $tick) + 's') infinite linear;
+    $tick: $tick - 1;
+  }
+}
+$tick: 0;
+@for $i from 6 to 11 {
+  .cell-4:nth-child(#{$i}){
+    animation: quick-glow 1s unquote( (0.1 * $tick) + 's') infinite linear;
+    -webkit-animation: quick-glow 1s unquote( (0.1 * $tick) + 's') infinite linear;
+  }
+  $tick: $tick + 1;
+}
+$tick: 0;
+@for $i from 16 to 21 {
+  .cell-4:nth-child(#{$i}){
+    animation: quick-glow 1s unquote( (0.1 * $tick) + 's') infinite linear;
+    -webkit-animation: quick-glow 1s unquote( (0.1 * $tick) + 's') infinite linear;
+    $tick: $tick + 1;
+  }
+}
+
+/****** HEART ******/
+
+$cellmini-order: (2,4,6,8,10,11,15,17,19,23);
+
+.cell-mini{
+  @include cell;
+  margin: 0;
+  width: 5px;
+  height: 5px;
+  background: $body-color;
+}
+
+@for $i from 0 to length($cellmini-order) {
+  .cell-mini:nth-child(#{nth($cellmini-order, $i+1)}){
+    background: $glow-color-1;
+    animation: glow 1.5s infinite linear;
+    -webkit-animation: glow 1.5s infinite linear;
+  }
+}
+
+/****** KEYFRAME ANIMATIONS ******/
+
+@keyframes quick-glow{
+  15%{
+    z-index: 99;
+    background: $glow-color-2;
+    box-shadow: 0 0 10px 2px $glow-color-3;
+  }
+}
+
+@keyframes glow{
+  50%{
+    z-index: 99;
+    background: $glow-color-4;
+    box-shadow: 0 0 10px 2px $glow-color-1;
+  }
+}
+
+@-webkit-keyframes quick-glow{
+  15%{
+    z-index: 99;
+    background: $glow-color-2;
+    box-shadow: 0 0 10px 2px $glow-color-3;
+  }
+}
+
+@-webkit-keyframes glow{
+  50%{
+    z-index: 99;
+    background: $glow-color-4;
+    box-shadow: 0 0 10px 2px $glow-color-1;
+  }
+}

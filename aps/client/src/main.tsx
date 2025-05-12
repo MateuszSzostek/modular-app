@@ -25,6 +25,14 @@ createRoot(document.getElementById('root')!).render(
           colorBgContainer: '#1C1C1C', // Background color
           controlOutline: 'none', // Removes extra outlines on hover
         },
+        components: {
+          Modal: {
+            contentBg: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+            headerBg: 'rgba(0, 0, 0, 0.7)', // Slightly darker for header
+            borderRadius: 16, // Zaokrąglone rogi
+            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.5)', // Cień
+          },
+        },
       }}
     >
       <Provider store={store}>

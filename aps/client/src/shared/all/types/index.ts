@@ -1,4 +1,8 @@
-export type Response<T> = {
-  status: number;
-  data: T | { errors: { messageCode: string }; param?: string };
-};
+export interface Response<T> {
+  data: T
+}
+
+export interface ResponseBody {
+  message: string[]
+  statusCode: string
+}

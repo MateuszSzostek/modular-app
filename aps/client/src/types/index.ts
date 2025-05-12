@@ -10,20 +10,22 @@ export type Errors = {
   status: string
 }
 
-export type ValidationError = {
+export type ResponseMessage = {
   field: string
   messageCode: string
 }
 
 export type Response<T> = { data: T } | { error: FetchBaseQueryError | SerializedError | ValidationErrorsResponse }
 
-export type ValidationErrorsResponse = ValidationErrors | FetchBaseQueryError
+export type ValidationErrorsResponse = ResponseCatchErrorData | FetchBaseQueryError
 
-export type ValidationErrors = {
+export type ResponseCatchErrorData = {
   data: {
-    errors: ValidationError[]
+    error: string
+    message: string[]
+    statusCode: number
   }
-  status: string | number
+  status: number
 }
 
 export type ParsedValidationErrors = {

@@ -1,1 +1,3 @@
 /infra/kafka-data
+/aps/client/.env
+/aps/backend/backend/.env

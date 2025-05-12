@@ -7,4 +7,12 @@ export enum AUTH_RESPONSE_CODES {
   WRONG_SIGN_IN_DATA = 'wrong-sign-in-data',
   IS_AUTHENTICATED = 'is-authenticated',
   IS_NOT_AUTHENTICATED = 'is-not-authenticated',
+  EMAIL_CONFIRMED_SUCCESSFULLY = 'email-confirmed-successfully',
+  EMAIL_CONFIRMED_FAILURE = 'email-confirmed-failure',
+  RESET_PASSWORD_LINK_SENT = 'reset-password-link-sent',
+  RESET_PASSWORD_TOKEN_EXPIRED = 'reset-password-token-expired',
+  PASSWORDS_ARE_NOT_THE_SAME = 'passwords-are-not-the-same',
+  PASSWORD_COULD_NOT_BE_UPDATE = 'password-could-not-be-updated',
+  PASSWORD_UPDATED = 'password-updated',
+  ACCOUNT_NOT_CONFIRMED = 'account-not-confirmed',
 }

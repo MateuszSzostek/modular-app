@@ -1,0 +1,46 @@
+.modal--primary {
+  //  background-color: red !important;
+}
+
+.ant-modal-mask{
+    //background-color: rgba(0, 0, 0, 0.6);
+   // backdrop-filter: blur(10px);
+}
+
+.animated-border-modal .ant-modal-content {
+    position: relative;
+    border: 4px solid transparent; /* Zapobiega przesunięciom layoutu */
+    border-radius: 16px; /* Zaokrąglenie rogów */
+    z-index: 1;
+  }
+  
+  .animated-border-modal .ant-modal-content::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: inherit;
+    border: 4px solid transparent;
+    background: linear-gradient(45deg, #8A2BE2, #FFD700, #FF69B4, #00FFFF);
+    background-size: 200% 200%;
+    animation: borderAnimation 3s infinite ease-in-out;
+    z-index: -1; /* Umieszczamy za obramowaniem */
+    mask: linear-gradient(white, white) padding-box, linear-gradient(white, white) border-box;
+    -webkit-mask: linear-gradient(white, white) padding-box, linear-gradient(white, white) border-box;
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+  }
+  
+  @keyframes borderAnimation {
+    0% {
+      background-position: 5% 50%;
+    }
+    50% {
+      background-position: 95% 50%;
+    }
+    100% {
+      background-position: 5% 50%;
+    }
+  }

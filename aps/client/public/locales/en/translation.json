@@ -14,71 +14,141 @@
     "logout-button": "Logout"
   },
   "register-form": {
-    "title": "Zarejestruj się",
+    "title": "Sign up and join us!",
+    "welcome-text": "Fill out the form to create your account. After registering, you'll receive an email with a confirmation link. Don't worry, we won't flood you with spam – we promise to only remind you of us in a positive way! We’re waiting for you!",
     "email-label": "Email",
-    "password-label": "Hasło",
-    "privacy-policy-label": "Oświadczam, że znam i akceptuję warunki ogólne i politykę prywatności.",
-    "register-button": "Zarejestruj się",
-    "have-a-account-label": "Masz juz konto? ",
-    "login-link": "Zaloguj się",
-    "google-register-button": "Zarejestruj się przy użyciu konta Google"
+    "first-name-label": "First Name",
+    "last-name-label": "Last Name",
+    "password-label": "Password",
+    "privacy-policy-label": "I acknowledge and accept the terms and privacy policy.",
+    "register-button": "Register",
+    "have-a-account-label": "Already have an account? ",
+    "login-link": "Log in",
+    "google-register-button": "Register with Google Account",
+    "account-confirmation-link-modal": {
+      "title": "Confirm Your Account – Your Ticket to Success!",
+      "content": "A magical link has been sent to your email address. Click it to confirm your account and unlock new opportunities. If the email got lost (perhaps exploring the spam folder), be sure to check there! 😉 Let’s do this – your digital success is waiting!"
+    },
+    "account-already-exists-modal": {
+      "title": "Oops, this account already exists!",
+      "content": "It seems like there’s already an account registered with this email address. Maybe it’s the perfect time to dust off that password? 😉 If you need help, click 'Forgot Password' – we promise it won’t hurt!",
+      "ok-btn": "Forgot password",
+      "cancel-btn": "Close"
+    }
+  },
+  "forgot-password-form": {
+    "title": "Forgot your password?",
+    "text": "Enter your email address, and we'll send you a link to reset your password. We promise it’ll be quick, easy, and math-test-free! 😊",
+    "email-label": "Email",
+    "send-button": "Send",
+    "have-no-account-label": "Don't have an account?",
+    "register-link": "Register",
+    "reset-password-link-sent-modal": {
+      "title": "Password reset link sent!",
+      "content": "We've sent an email with a link to reset your password. Please check your inbox (and spam folder just in case) and follow the instructions.",
+      "ok-btn": "Ok"
+    }
   },
   "login-form": {
-    "title": "Zaloguj się",
-    "google-login-button": "Zaloguj się przy użyciu konta Google",
+    "title": "Welcome back!",
+    "text": "Log in to return to your world. We promise your data is safe – we guard it like treasure! 😊",
     "email-label": "Email",
-    "password-label": "Hasło",
-    "forgot-password-link": "Nie pamiętasz hasła? ",
-    "login-button": "Zaloguj się",
-    "have-no-account-label": "Nie masz konta? ",
-    "register-link": "Zarejestruj się"
+    "password-label": "Password",
+    "login-button": "Log In",
+    "forgot-password-label": "Forgot your password?",
+    "forgot-password-link": "Reset it",
+    "no-account-label": "Don’t have an account yet?",
+    "register-link": "Register",
+    "account-does-not-exists-modal": {
+      "title": "Account not found",
+      "content": "It seems the provided email address is not associated with any account. Would you like to create a new account and join us?",
+      "ok-btn": "Register",
+      "cancel-btn": "Cancel"
+    }
   },
   "reset-password-form": {
-    "title": "Zresetuj Haslo",
-    "email-label": "Email",
-    "send-button": "Wyślij",
-    "have-no-account-label": "Nie masz konta? ",
-    "register-link": "Zarejestruj się"
+    "title": " Set a New Password",
+    "new-password-label": "Password",
+    "new-password-placeholder": "Password",
+    "new-password-confirmation-label": "Password Confirmation",
+    "new-password-confirmation-placeholder": "Password Confirmation",
+    "change-password-button": "Change Password",
+    "have-no-account-label": "Don't have an account? ",
+    "register-link": "Register",
+    "content": "Time for a fresh start! Please enter your new password and confirm it below. Make sure it's secure — ideally, it should be at least 8 characters long and include uppercase letters, numbers, and special symbols. If needed, use the show password option to double-check your entry. Don't worry, we won't judge your password choice! 😄",
+    "password-changed-modal": {
+      "title": "Password Changed Successfully!",
+      "content": "Your new password is now active. You can log in and continue using our platform. 🔐",
+      "ok-btn": "Log In"
+    }
   },
   "new-password-form": {
-    "title": "Podaj nowe hasło",
-    "password-label": "Hasło",
-    "confirm-password-label": "Powtórz hasło",
-    "change-password-button": "Zmień hasło",
-    "have-no-account-label": "Nie masz konta? ",
-    "register-link": "Zarejestruj się"
+    "title": "Enter a new password",
+    "password-label": "Password",
+    "confirm-password-label": "Confirm Password",
+    "change-password-button": "Change Password",
+    "have-no-account-label": "Don't have an account? ",
+    "register-link": "Register"
   },
-  "register-confirmation-page": {
-    "loading-text": "Potwierdzamy twoje konto...",
-    "success-text": "Twoje konto zostało potwierdzone",
-    "error-text": "Wystąpił błąd podczas potwierdzania twojego konta, proszę spróbuj ponownie za jakiś czas"
+  "account-confirmation-waiting": {
+    "title": "Confirming your account...",
+    "text": "Please hold on, we’re checking your account status. This will only take a moment – we promise it’s not like waiting in line at the DMV! 😊"
+  },
+  "account-confirmation-success": {
+    "title": "Account successfully confirmed!",
+    "text": "Your account has been confirmed. You can now fully enjoy everything our platform has to offer. We're thrilled to have you with us! 🚀"
+  },
+  "account-confirmation-error": {
+    "title": "Oops, something went wrong!",
+    "text": "We couldn’t confirm your account. The link might have expired or something went wrong on our end. Try again or reach out to support – we’re here to help! 🙌"
   },
   "password-changed-confirmation-modal": {
-    "message": "Hasło zostało zmienione"
+    "message": "Password has been changed"
   },
   "save-invoice-company-details-confirmation-modal": {
-    "title": "Zapisywanie Twoich danych powiodło się!",
-    "message": "Zawsze możesz je edytować w swoim profilu"
+    "title": "Saving your data was successful!",
+    "message": "You can always edit it in your profile"
   },
   "error-code": {
-    "required": "To pole jest wymagane",
+    "required": "This field is required",
     "email": {
-      "email-must-be-valid": "Podany email jest nie wazny",
-      "email-in-use": "Email in use"
+      "must-be-an-email": "The provided email is invalid",
+      "email-in-use": "Email is already in use"
     },
     "password": {
-      "email-must-be-valid": "Email must be valid",
+      "password-does-not-match-to-account": "Entered password is incorrect",
+      "password-must-not-be-empty": "Password must not be empty",
+      "must-match-password-regex": "Password must include at least one lowercase letter, one uppercase letter, one number, one special character (@, $, !, %, *, ?, &), and contain only letters, numbers, and these special characters.",
       "password-must-be-at-least-7-characters-long": "Password must be at least 7 characters long",
       "password-must-contain-at-least-one-uppercase-letter": "Password must contain at least one uppercase letter",
       "password-must-contain-at-least-one-number": "Password must contain at least one number",
-      "password-must-contain-at-least-one-special-character": "Password must contain at least one special character"
+      "password-must-contain-at-least-one-special-character": "Password must contain at least one special character",
+      "at-least-6-characters-long": "Password must be at least 6 characters long"
+    },
+    "new-password": {
+      "password-must-not-be-empty": "New password must not be empty",
+      "must-match-password-regex": "New password must include at least one lowercase letter, one uppercase letter, one number, one special character (@, $, !, %, *, ?, &), and contain only letters, numbers, and these special characters.",
+      "password-must-be-at-least-7-characters-long": "New password must be at least 7 characters long",
+      "password-must-contain-at-least-one-uppercase-letter": "New password must contain at least one uppercase letter",
+      "password-must-contain-at-least-one-number": "New password must contain at least one number",
+      "password-must-contain-at-least-one-special-character": "New password must contain at least one special character",
+      "at-least-6-characters-long": "New password must be at least 6 characters long"
+    },
+    "new-password-confirmation": {
+      "password-must-not-be-empty": "New password confirmation must not be empty",
+      "must-match-password-regex": "New password confirmation must include at least one lowercase letter, one uppercase letter, one number, one special character (@, $, !, %, *, ?, &), and contain only letters, numbers, and these special characters.",
+      "password-must-be-at-least-7-characters-long": "New password confirmation must be at least 7 characters long",
+      "password-must-contain-at-least-one-uppercase-letter": "New password confirmation must contain at least one uppercase letter",
+      "password-must-contain-at-least-one-number": "New password confirmation must contain at least one number",
+      "password-must-contain-at-least-one-special-character": "New password confirmation must contain at least one special character",
+      "at-least-6-characters-long": "New password confirmation must be at least 6 characters long"
     }
   },
   "reset-password-sent-confirmation-modalss": {
-    "message:": "Na podany adres został wysłany link po kliknięciu w niego możliwa będzie zmiana hasła"
+    "message:": "A link has been sent to the provided email. Click the link to change your password."
   },
   "reset-password-sent-confirmation-modal": {
-    "message": "Na podany adres został wysłany link po kliknięciu w niego możliwa będzie zmiana hasła"
+    "message": "A link has been sent to the provided email. Click the link to change your password."
   },
   "dashboard": {
     "title": "",

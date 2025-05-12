@@ -1,65 +1,56 @@
 import { BASE_API_URL } from '../../../const/index'
-
+import { Response, ResponseBody } from '../../../shared/all'
 /*
  *** Requests Types
  */
+
 export type SignUpRequest = {
+  firstName: string
+  lastName: string
   email: string
   password: string
   privacyPolicy: boolean
 }
-export type SignUpResponse = {
-  status: number
-}
+export interface SignUpResponse extends ResponseBody {}
 
-export type SignUpConfirmationRequest = {
-  userId: string
-  token: string
+export interface ConfirmationAccountRequest {
+  authDataUserId: string
+  accountConfirmationToken: string
 }
-export type SignUpConfirmationResponse = {
-  status: string
-}
+export interface ConfirmationAccountResponse extends ResponseBody {}
 
-export type SignInRequest = {
+export interface SignInRequest {
   email: string
   password: string
 }
-export type SignInResponse = {
-  sessionToken: string
-  status: string
-  message: string
-}
+export interface SignInResponse extends ResponseBody {}
 
-export type SignOutRequest = {}
-export type SignOutResponse = {
-  status: string
-  message: string
-}
+export interface SignOutRequest {}
+export interface SignOutResponse extends ResponseBody {}
 
-export type ResetPasswordRequest = {
+export interface ForgotPasswordRequest {
   email: string
 }
-export type ResetPasswordResponse = {
-  status: string
-}
+export interface ForgotPasswordResponse extends ResponseBody {}
 
-export type NewPasswordRequest = {
-  jwtToken: string
+export interface ResetPasswordRequest {
+  userAuthDataId: string
   newPassword: string
   newPasswordConfirmation: string
+  resetPasswordToken: string
 }
-export type NewPasswordResponse = {
-  status: string
-}
+export interface ResetPasswordResponse extends ResponseBody {}
 
-export type GetCurrentUserRequest = {}
-export type GetCurrentUserResponse = {}
+export interface IsAuthenticatedRequest {}
+export interface IsAuthenticatedResponse extends ResponseBody {}
 
 /*
  *** Fields Types
  */
 export type SignUpFieldType = {
   email: string
+  firstName: string
+  lastName: string
   password: string
   privacyPolicy: boolean
 }
@@ -69,13 +60,13 @@ export type SignInFieldType = {
   password: string
 }
 
-export type ResetPasswordFieldType = {
+export type ForgotPasswordFieldType = {
   email: string
 }
 
 export type NewPasswordFieldType = {
-  newPassword: string
-  newPasswordConfirmation: string
+  'new-password': string
+  'new-password-confirmation': string
 }
 
 /*
@@ -115,6 +106,8 @@ export interface IUserState {
  */
 export enum SIGN_UP_INPUT_FIELDS {
   email = 'email',
+  firstName = 'firstName',
+  lastName = 'lastName',
   password = 'password',
   privacyPolicy = 'privacyPolicy',
 }
@@ -124,13 +117,18 @@ export enum SIGN_IN_INPUT_FIELDS {
   password = 'password',
 }
 
-export enum RESET_PASSWORD_INPUT_FIELDS {
+export enum FORGOT_PASSWORD_INPUT_FIELDS {
   email = 'email',
 }
 
 export enum NEW_PASSWORD_INPUT_FIELDS {
-  newPassword = 'newPassword',
-  newPasswordConfirmation = 'newPasswordConfirmation',
+  newPassword = 'new-password',
+  newPasswordConfirmation = 'new-password-confirmation',
+}
+
+export enum RESET_PASSWORD_INPUT_FIELDS {
+  newPassword = 'new-password',
+  newPasswordConfirmation = 'new-password-confirmation',
 }
 
 export interface IUserActionByKey {

@@ -14,31 +14,73 @@
     "logout-button": "Logout"
   },
   "register-form": {
-    "title": "Zarejestruj się",
+    "title": "Zarejestruj się i dołącz do nas!",
+    "welcome-text": "Wypełnij formularz, aby zarejestrować konto. Po zapisaniu się, dostaniesz e-mail z linkiem do potwierdzenia. Nie martw się, nie będziemy Cię zalewać spamem – obiecujemy, że będziemy tylko pozytywnie przypominać o sobie! Czekamy na Ciebie!",
     "email-label": "Email",
+    "first-name-label": "Imie",
+    "last-name-label": "Nazwisko",
     "password-label": "Hasło",
     "privacy-policy-label": "Oświadczam, że znam i akceptuję warunki ogólne i politykę prywatności.",
     "register-button": "Zarejestruj się",
     "have-a-account-label": "Masz juz konto? ",
     "login-link": "Zaloguj się",
-    "google-register-button": "Zarejestruj się przy użyciu konta Google"
+    "google-register-button": "Zarejestruj się przy użyciu konta Google",
+    "account-confirmation-link-modal": {
+      "title": "Ups, to konto już istnieje!",
+      "content": "Wygląda na to, że na podany adres e-mail jest już zarejestrowane konto. Może to idealny moment, żeby odkurzyć hasło? 😉 Jeśli potrzebujesz pomocy, kliknij 'Zapomniałem hasła' – obiecujemy, że nie będzie bolało!"
+    },
+    "account-already-exists-modal": {
+      "title": "Oops, this account already exists!",
+      "content": "AIt seems like there’s already an account registered with this email address. Maybe it’s the perfect time to dust off that password? 😉 If you need help, click 'Forgot Password' – we promise it won’t hurt!",
+      "ok-btn": "Zapomnialem hasla",
+      "cancel-btn": "Zamknij"
+    }
+  },
+  "forgot-password-form": {
+    "title": "Zapomniałeś hasła?",
+    "text": "Podaj swój adres e-mail, a wyślemy Ci link do zresetowania hasła. Obiecujemy, że będzie szybko, łatwo i bez wypełniania testów z matematyki! 😊",
+    "email-label": "E-mail",
+    "send-button": "Wyślij",
+    "have-no-account-label": "Nie masz konta?",
+    "register-link": "Zarejestruj się",
+    "reset-password-link-sent-modal": {
+      "title": "Link do zresetowania hasła wysłany!",
+      "content": "Wysłaliśmy wiadomość e-mail z linkiem do zresetowania hasła. Sprawdź swoją skrzynkę odbiorczą (oraz folder spam, na wszelki wypadek) i postępuj zgodnie z instrukcjami.",
+      "ok-btn": "Ok"
+    }
   },
   "login-form": {
-    "title": "Zaloguj się",
-    "google-login-button": "Zaloguj się przy użyciu konta Google",
-    "email-label": "Email",
+    "title": "Witaj ponownie!",
+    "text": "Zaloguj się, aby wrócić do swojego świata. Obiecujemy, że Twoje dane są bezpieczne – pilnujemy ich jak skarbu! 😊",
+    "email-label": "E-mail",
     "password-label": "Hasło",
-    "forgot-password-link": "Nie pamiętasz hasła? ",
     "login-button": "Zaloguj się",
-    "have-no-account-label": "Nie masz konta? ",
-    "register-link": "Zarejestruj się"
+    "forgot-password-label": "Zapomniałeś hasła?",
+    "forgot-password-link": "Zresetuj je",
+    "no-account-label": "Nie masz jeszcze konta?",
+    "register-link": "Zarejestruj się",
+    "account-does-not-exists-modal": {
+      "title": "Nie znaleźliśmy konta",
+      "content": "Wygląda na to, że podany adres e-mail nie jest powiązany z żadnym kontem. Może chcesz założyć nowe konto i dołączyć do nas?",
+      "ok-btn": "Zarejestruj się",
+      "cancel-btn": "Anuluj"
+    }
   },
   "reset-password-form": {
-    "title": "Zresetuj Haslo",
-    "email-label": "Email",
-    "send-button": "Wyślij",
+    "title": "Ustaw nowe hasło",
+    "new-password-label": "Haslo",
+    "new-password-placeholder": "Haslo",
+    "new-password-confirmation-label": "Potwierdzenie Hasla",
+    "new-password-confirmation-placeholder": "Potwierdzenie Hasla",
+    "change-password-button": "Zmien Haslo",
     "have-no-account-label": "Nie masz konta? ",
-    "register-link": "Zarejestruj się"
+    "register-link": "Zarejestruj się",
+    "content": "Czas na świeży start! Wprowadź nowe hasło i potwierdź je poniżej. Pamiętaj, aby było bezpieczne — najlepiej, gdy zawiera co najmniej 8 znaków, w tym wielkie litery, cyfry i znaki specjalne. Jeśli potrzebujesz, skorzystaj z opcji podglądu hasła, aby upewnić się, że wszystko się zgadza. Nie martw się, nie ocenimy Twojego wyboru hasła! 😄",
+    "password-changed-modal": {
+      "title": "Hasło zostało zmienione!",
+      "content": "Twoje nowe hasło jest już aktywne. Możesz teraz zalogować się i kontynuować korzystanie z naszej platformy. 🔐",
+      "ok-btn": "Zaloguj się"
+    }
   },
   "new-password-form": {
     "title": "Podaj nowe hasło",
@@ -48,13 +90,17 @@
     "have-no-account-label": "Nie masz konta? ",
     "register-link": "Zarejestruj się"
   },
-  "register-confirmation-page": {
-    "loading-text": "Potwierdzamy twoje konto...",
-    "success-text": "Twoje konto zostało potwierdzone",
-    "error-text": "Wystąpił błąd podczas potwierdzania twojego konta, proszę spróbuj ponownie za jakiś czas"
+  "account-confirmation-waiting": {
+    "title": "Trwa potwierdzanie konta...",
+    "text": "Proszę czekać chwilę, sprawdzamy status Twojego konta. To zajmie tylko moment – obiecujemy, że nie będzie jak w kolejce na poczcie! 😊"
   },
-  "password-changed-confirmation-modal": {
-    "message": "Hasło zostało zmienione"
+  "account-confirmation-success": {
+    "title": "Potwierdzenie zakończone pomyślnie!",
+    "text": "Twoje konto zostało potwierdzone. Możesz teraz w pełni korzystać z naszej platformy. Cieszymy się, że jesteś z nami! 🚀"
+  },
+  "account-confirmation-error": {
+    "title": "Ups, coś poszło nie tak!",
+    "text": "Nie udało się potwierdzić Twojego konta. Może link wygasł lub coś się nie udało po naszej stronie. Spróbuj ponownie lub skontaktuj się z pomocą techniczną. Zrobimy wszystko, żeby pomóc! 🙌"
   },
   "save-invoice-company-details-confirmation-modal": {
     "title": "Zapisywanie Twoich danych powiodło się!",
@@ -63,15 +109,33 @@
   "error-code": {
     "required": "To pole jest wymagane",
     "email": {
-      "email-must-be-valid": "Podany email jest nie wazny",
+      "must-be-an-email": "Podany email jest nie wazny",
       "email-in-use": "Email in use"
     },
     "password": {
-      "email-must-be-valid": "Email musi być poprawny",
+      "password-does-not-match-to-account": "Wprowadzone haslo jest nieprawidlowe.",
+      "password-must-not-be-empty": "Hasło nie moze byc puste",
+      "must-match-password-regex": "Hasło musi zawierać co najmniej jedną małą literę, jedną wielką literę, jedną cyfrę, jeden znak specjalny (@, $, !, %, *, ?, &) oraz składać się wyłącznie z liter, cyfr i tych znaków specjalnych.",
       "password-must-be-at-least-7-characters-long": "Hasło musi mieć co najmniej 7 znaków",
       "password-must-contain-at-least-one-uppercase-letter": "Hasło musi zawierać co najmniej jedną wielką literę",
       "password-must-contain-at-least-one-number": "Hasło musi zawierać co najmniej jedną cyfrę",
       "password-must-contain-at-least-one-special-character": "Hasło musi zawierać co najmniej jeden znak specjalny"
+    },
+    "new-password": {
+      "password-must-not-be-empty": "Nowe hasło nie moze byc puste",
+      "must-match-password-regex": "Nowe hasło musi zawierać co najmniej jedną małą literę, jedną wielką literę, jedną cyfrę, jeden znak specjalny (@, $, !, %, *, ?, &) oraz składać się wyłącznie z liter, cyfr i tych znaków specjalnych.",
+      "password-must-be-at-least-7-characters-long": "Nowe hasło musi mieć co najmniej 7 znaków",
+      "password-must-contain-at-least-one-uppercase-letter": "Nowe hasło musi zawierać co najmniej jedną wielką literę",
+      "password-must-contain-at-least-one-number": "Nowe hasło musi zawierać co najmniej jedną cyfrę",
+      "password-must-contain-at-least-one-special-character": "Nowe hasło musi zawierać co najmniej jeden znak specjalny"
+    },
+    "new-password-confirmation": {
+      "password-must-not-be-empty": "Potwierdzenie nowego hasła nie moze byc puste",
+      "must-match-password-regex": "Potwierdzenie nowego hasła musi zawierać co najmniej jedną małą literę, jedną wielką literę, jedną cyfrę, jeden znak specjalny (@, $, !, %, *, ?, &) oraz składać się wyłącznie z liter, cyfr i tych znaków specjalnych.",
+      "password-must-be-at-least-7-characters-long": "Potwierdzenie nowego hasła musi mieć co najmniej 7 znaków",
+      "password-must-contain-at-least-one-uppercase-letter": "Potwierdzenie nowego hasła musi zawierać co najmniej jedną wielką literę",
+      "password-must-contain-at-least-one-number": "Potwierdzenie nowego hasła musi zawierać co najmniej jedną cyfrę",
+      "password-must-contain-at-least-one-special-character": "Potwierdzenie nowego hasła musi zawierać co najmniej jeden znak specjalny"
     }
   },
   "reset-password-sent-confirmation-modalss": {

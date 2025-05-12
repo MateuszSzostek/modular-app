@@ -57,7 +57,63 @@
         ]
       }
     },
-    "/auth/sign-in": {
+    "/api/auth/forgot-password": {
+      "post": {
+        "operationId": "AuthController_forgotPassword",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset link sent"
+          },
+          "400": {
+            "description": "Invalid email"
+          }
+        },
+        "summary": "Request password reset",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/auth/reset-password": {
+      "post": {
+        "operationId": "AuthController_resetPassword",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset successful"
+          },
+          "400": {
+            "description": "Invalid token"
+          }
+        },
+        "summary": "Reset password",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/auth/sign-in": {
       "post": {
         "operationId": "AuthController_signIn",
         "parameters": [],
@@ -82,7 +138,7 @@
         ]
       }
     },
-    "/auth/sign-up": {
+    "/api/auth/sign-up": {
       "post": {
         "operationId": "AuthController_signUp",
         "parameters": [],
@@ -110,7 +166,7 @@
         ]
       }
     },
-    "/auth/sign-out": {
+    "/api/auth/sign-out": {
       "post": {
         "operationId": "AuthController_logout",
         "parameters": [],
@@ -125,7 +181,7 @@
         ]
       }
     },
-    "/auth/is-authenticated": {
+    "/api/auth/is-authenticated": {
       "post": {
         "operationId": "AuthController_isAuthenticated",
         "parameters": [],
@@ -140,6 +196,146 @@
         "summary": "Is user authenticated?",
         "tags": [
           "Auth"
+        ]
+      }
+    },
+    "/api/auth/confirm-account/{userId}/{emailConfirmationToken}": {
+      "post": {
+        "operationId": "AuthController_confirmAccount",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "emailConfirmationToken",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account confirmed"
+          }
+        },
+        "summary": "Confirm account",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/profiles/create": {
+      "post": {
+        "operationId": "ProfileController_createProfile",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "New profile created successfully"
+          }
+        },
+        "summary": "Create new profile",
+        "tags": [
+          "Profile"
+        ]
+      }
+    },
+    "/api/profiles/{profileId}": {
+      "get": {
+        "operationId": "ProfileController_getProfile",
+        "parameters": [
+          {
+            "name": "profileId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Profile returned successfully"
+          }
+        },
+        "summary": "Get profile",
+        "tags": [
+          "Profile"
+        ]
+      }
+    },
+    "/api/profiles/update": {
+      "post": {
+        "operationId": "ProfileController_updateProfile",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Profile updated successfully"
+          }
+        },
+        "summary": "Updated profile",
+        "tags": [
+          "Profile"
+        ]
+      }
+    },
+    "/api/profiles/delete": {
+      "delete": {
+        "operationId": "ProfileController_deleteProfile",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Profile"
         ]
       }
     }
@@ -161,6 +357,40 @@
       }
     },
     "schemas": {
+      "ForgotPasswordDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "ResetPasswordDto": {
+        "type": "object",
+        "properties": {
+          "userAuthDataId": {
+            "type": "string"
+          },
+          "resetPasswordToken": {
+            "type": "string"
+          },
+          "newPassword": {
+            "type": "string"
+          },
+          "newPasswordConfirmation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "userAuthDataId",
+          "resetPasswordToken",
+          "newPassword",
+          "newPasswordConfirmation"
+        ]
+      },
       "SignInDto": {
         "type": "object",
         "properties": {
@@ -188,6 +418,9 @@
           "lastName": {
             "type": "string"
           },
+          "privacyPolicy": {
+            "type": "boolean"
+          },
           "password": {
             "type": "string"
           }
@@ -196,7 +429,64 @@
           "email",
           "firstName",
           "lastName",
+          "privacyPolicy",
           "password"
+        ]
+      },
+      "CreateProfileDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "avatar"
+        ]
+      },
+      "GetProfileDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "UpdateProfileDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "avatar"
+        ]
+      },
+      "DeleteProfileDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
         ]
       }
     }

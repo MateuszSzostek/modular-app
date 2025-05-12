@@ -11,6 +11,7 @@ import { UserService } from '../user/services/user.service';
 import { UserSchema } from '../user/models/user.model';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserAuthDataSchema } from './models/auth.model';
+import { MailService } from '../mail/services/mail.service';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { UserAuthDataSchema } from './models/auth.model';
     }),
   ],
   providers: [
+    MailService,
     AuthService,
     UserService,
     LocalStrategy,

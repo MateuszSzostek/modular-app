@@ -24,19 +24,54 @@ body {
 }
 
 .bring-in-anim {
-  animation: bringIn 0.3s ease-in-out;
+  animation: bringIn 1s ease-out;
   animation-fill-mode: forwards;
   opacity: 0;
+}
+
+.gradient-text{
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #8A2BE2, #FFD700, #FF69B4, #00FFFF);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 4s infinite ease-in-out;
+}
+
+.scalling-area {
+  animation: scalling 4s infinite ease-in-out;
+}
+
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}
+
+@keyframes scalling {
+  0%, 100% {
+    transform: translateY(0) ; /* Starting and ending position */
+  }
+  50% {
+    transform: translateY(5px) ; /* Slight upward movement */
+  }
 }
 
 @keyframes bringIn {
   0% {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-10px) scale3d(1.02,1.02,1.02);
   }
   100% {
     opacity: 1;
-    transform: translateY(0px);
+    transform: translateY(0px)  scale3d(1,1,1);
   }
 }
 

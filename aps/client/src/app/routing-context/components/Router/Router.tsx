@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import RootLayout from '../../../layout-context/components/RootLayout/RootLayout'
 import LandingLayout from '../../../layout-context/components/LandingLayout/LandingLayout'
 import AdminAppLayout from '../../../layout-context/components/AdminAppLayout/AdminAppLayout'
+import ConfirmAccountPageView from '../../views/ConfirmAccountView/ConfirmAccountView'
+import ForgotPasswordView from '../../views/ForgotPasswordView/ForgotPasswordView'
 
 export default function AppRouter() {
   // const { isAuthenticated } = useAuth()
@@ -18,13 +20,18 @@ export default function AppRouter() {
   return (
     <Router>
       <Routes>
-        {/*routes for all users*/}
+        {/* Main Root Layout */}
         <Route path="/" element={<RootLayout />}>
+          {/* Public Auth Routes */}
           <Route path={ROUTES.auth} element={<LandingLayout />}>
             <Route path={ROUTES.login} element={<LoginView />} />
             <Route path={ROUTES.register} element={<SignUpView />} />
-            <Route path={ROUTES.resetPassword} element={<ResetPasswordView />} />
+            <Route path={ROUTES.forgotPassword} element={<ForgotPasswordView />} />
+            <Route path={`/${ROUTES.auth}/${ROUTES.resetPassword}/:userAuthDataId?/:resetPasswordToken?`} element={<ResetPasswordView />} />
             <Route path={ROUTES.newPassword} element={<NewPasswordView />} />
+            <Route path={`/${ROUTES.auth}/${ROUTES.confirmAccountView}/:userId?/:emailConfirmationToken?`} element={<ConfirmAccountPageView />} />
+            {/* Catch-all route for /auth */}
+            <Route path="*" element={<Navigate to={`/${ROUTES.auth}/${ROUTES.login}`} replace />} />
           </Route>
           <Route path={ROUTES.app} element={<AdminAppLayout />}>
             <Route path={ROUTES.dashboard} element={<DashboardView />} />

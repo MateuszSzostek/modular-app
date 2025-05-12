@@ -1,37 +1,41 @@
 import { type FormProps } from 'antd'
-import { NewPasswordFieldType, NewPasswordResponse } from '../../domain/identify-and-access-context'
+import { NewPasswordFieldType } from '../../domain/identify-and-access-context'
 import { useState } from 'react'
-import { useNewPasswordMutation } from '../../services/authSlice'
+import { useResetPasswordMutation } from '../../services/authSlice'
 import { useNavigate } from 'react-router-dom'
-import { Errors, ParsedValidationErrors, Response } from '../../../../types'
+import { Errors, ParsedValidationErrors } from '../../../../types'
 import { getErrors } from '../../../../utils'
 import { ROUTES } from '../../../routing-context/domain/router-context'
 import { useParams } from 'react-router-dom'
 
 export default function useNewPasswordForm() {
-  const [newPassword, result] = useNewPasswordMutation()
+  const [newPassword, result] = useResetPasswordMutation()
   const [formErrors, setFormErrors] = useState<ParsedValidationErrors>({})
   const navigate = useNavigate()
   const [hasPasswordChanged, setHasPasswordChanged] = useState<boolean>()
   const params = useParams()
 
-  const onFinish: FormProps<NewPasswordFieldType>['onFinish'] = (values) => {
+  // Handle successful form submission
+  const onFinish: FormProps<NewPasswordFieldType>['onFinish'] = async (values): Promise<void> => {
     setFormErrors({})
-    newPassword({
-      jwtToken: params?.token || '',
-      newPassword: values?.newPassword,
-      newPasswordConfirmation: values?.newPasswordConfirmation,
-    }).then((response: Response<NewPasswordResponse>) => {
-      if ('error' in response) {
-        onValidationErrors(response.error as Errors)
-      } else if (response.data.status === '200 OK') {
+    try {
+      const response = await newPassword({
+        newPassword: values.newPassword,
+        newPasswordConfirmation: values.newPasswordConfirmation,
+        userAuthDataId: '',
+        resetPasswordToken: '',
+      }).unwrap()
+
+      if (response?.data?.status === 200) {
         setHasPasswordChanged(true)
-        setTimeout(() => {
-          setHasPasswordChanged(false)
-        }, 4500)
+        setTimeout(() => setHasPasswordChanged(false), 4500)
       }
-    })
+    } catch (error) {
+      const validationErrors = error as Errors
+      onValidationErrors(validationErrors)
+    }
   }
+
   const onFinishFailed: FormProps<NewPasswordFieldType>['onFinishFailed'] = (errorInfo): void => {
     console.log('Failed:', errorInfo)
   }

@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  IsBoolean,
   IsEmail,
   IsNotEmpty,
   IsString,
@@ -23,6 +24,11 @@ export class SingUpDto {
   @IsString({ message: `${CODES.LAST_NAME}.${CODES.MUST_BE_A_STRING}` })
   @IsNotEmpty({ message: `${CODES.LAST_NAME}.${CODES.MUST_NOT_BE_EMPTY}` })
   lastName: string;
+
+  @ApiProperty()
+  @IsBoolean({ message: `${CODES.LAST_NAME}.${CODES.MUST_BE_TRUE}` })
+  @IsNotEmpty({ message: `${CODES.LAST_NAME}.${CODES.MUST_NOT_BE_EMPTY}` })
+  privacyPolicy: boolean;
 
   @ApiProperty()
   @IsNotEmpty({ message: `${CODES.PASSWORD}.${CODES.MUST_NOT_BE_EMPTY}` })

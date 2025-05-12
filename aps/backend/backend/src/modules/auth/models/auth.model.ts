@@ -15,9 +15,21 @@ export const UserAuthDataSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    isPrivacyPolicyAccepted: {
+      type: Boolean,
+      required: true,
+    },
     isEmailConfirmed: {
       type: Boolean,
       required: true,
+    },
+    emailConfirmationToken: {
+      type: String,
+      required: false,
+    },
+    resetPasswordToken: {
+      type: String,
+      required: false,
     },
   },
   { timestamps: true },
@@ -29,4 +41,6 @@ export interface UserAuthData extends mongoose.Document {
   password: string;
   userId: string;
   isEmailConfirmed: boolean;
+  emailConfirmationToken: string | null;
+  resetPasswordToken: string | null;
 }

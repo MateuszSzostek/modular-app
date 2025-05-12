@@ -4,16 +4,16 @@ import {
   SignUpResponse,
   SignInRequest,
   SignInResponse,
-  NewPasswordRequest,
-  NewPasswordResponse,
   ResetPasswordRequest,
   ResetPasswordResponse,
-  SignUpConfirmationResponse,
-  SignUpConfirmationRequest,
-  GetCurrentUserResponse,
-  GetCurrentUserRequest,
   SignOutResponse,
   SignOutRequest,
+  ForgotPasswordRequest,
+  ForgotPasswordResponse,
+  ConfirmationAccountResponse,
+  ConfirmationAccountRequest,
+  IsAuthenticatedResponse,
+  IsAuthenticatedRequest,
 } from '../domain/identify-and-access-context'
 import { BASE_AUTH_URL } from '../domain/identify-and-access-context'
 import { setUserFieldByKey } from './usersStoreSlice'
@@ -28,10 +28,10 @@ export const authApi = createApi({
   }),
   endpoints: (builder) => ({
     signUp: builder.mutation<Response<SignUpResponse>, SignUpRequest>({
-      query: ({ email, password, privacyPolicy }) => ({
+      query: ({ firstName, lastName, email, password, privacyPolicy }) => ({
         url: `sign-up`,
         method: 'POST',
-        body: { email, password, privacyPolicy },
+        body: { firstName, lastName, email, password, privacyPolicy },
       }),
       transformResponse: (response: Response<SignUpResponse>) => response,
       transformErrorResponse: (response: ValidationErrorsResponse) => response,
@@ -60,20 +60,8 @@ export const authApi = createApi({
         }
       },
     }),
-    signUpConfirmation: builder.mutation<Response<SignUpConfirmationResponse>, SignUpConfirmationRequest>({
-      query: ({ userId, token }) => ({
-        url: `sign-up-confirmation`,
-        method: 'POST',
-        body: { userId },
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }),
-      transformResponse: (response: Response<SignUpConfirmationResponse>) => response,
-      transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
-    }),
 
-    login: builder.mutation<Response<SignInResponse>, SignInRequest>({
+    signIn: builder.mutation<Response<SignInResponse>, SignInRequest>({
       query: ({ email, password }) => ({
         url: `sign-in`,
         method: 'POST',
@@ -81,61 +69,69 @@ export const authApi = createApi({
       }),
 
       transformResponse: (response: Response<SignInResponse>) => response,
-      transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
+      transformErrorResponse: (response: ValidationErrorsResponse) => response,
     }),
 
-    logout: builder.query<Response<SignOutResponse>, SignOutRequest>({
-      query: ({}) => ({
-        url: `sign-out`,
-        method: 'GET',
-      }),
-
-      transformResponse: (response: Response<SignOutResponse>) => response,
-      transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
-    }),
-
-    resetPassword: builder.mutation<Response<ResetPasswordResponse>, ResetPasswordRequest>({
+    forgotPassword: builder.mutation<Response<ForgotPasswordResponse>, ForgotPasswordRequest>({
       query: ({ email }) => ({
-        url: `reset-password`,
+        url: `forgot-password`,
         method: 'POST',
         body: { email },
       }),
 
-      transformResponse: (response: Response<ResetPasswordResponse>) => response,
-      transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
+      transformResponse: (response: Response<ForgotPasswordResponse>) => response,
+      transformErrorResponse: (response: ValidationErrorsResponse) => response,
     }),
 
-    newPassword: builder.mutation<Response<NewPasswordResponse>, NewPasswordRequest>({
-      query: ({ jwtToken, newPassword, newPasswordConfirmation }) => ({
-        url: `new-password`,
+    resetPassword: builder.mutation<Response<ResetPasswordResponse>, ResetPasswordRequest>({
+      query: (payload) => ({
+        url: `reset-password`,
         method: 'POST',
-        body: { jwtToken, newPassword, newPasswordConfirmation },
+        body: payload,
       }),
 
-      transformResponse: (response: Response<NewPasswordResponse>) => response,
-      transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
+      transformResponse: (response: Response<ResetPasswordResponse>) => response,
+      transformErrorResponse: (response: ValidationErrorsResponse) => response,
     }),
 
-    getCurrentUser: builder.query<Response<GetCurrentUserResponse>, GetCurrentUserRequest>({
-      query: () => ({
-        url: `currentuser`,
-        method: 'GET',
+    confirmAccount: builder.mutation<Response<ConfirmationAccountResponse>, ConfirmationAccountRequest>({
+      query: ({ authDataUserId, accountConfirmationToken }) => ({
+        url: `confirm-account/${authDataUserId}/${accountConfirmationToken}`,
+        method: 'POST',
+      }),
+      transformResponse: (response: Response<ConfirmationAccountResponse>) => response,
+      transformErrorResponse: (response: ValidationErrorsResponse) => response,
+    }),
+
+    signOut: builder.query<Response<SignOutResponse>, SignOutRequest>({
+      query: ({}) => ({
+        url: `sign-out`,
+        method: 'POST',
       }),
 
-      transformResponse: (response: Response<GetCurrentUserResponse>) => response,
-      transformErrorResponse: (response: ValidationErrorsResponse) => response.data,
+      transformResponse: (response: Response<SignOutResponse>) => response,
+      transformErrorResponse: (response: ValidationErrorsResponse) => response,
+    }),
+
+    isAuthenticated: builder.mutation<Response<IsAuthenticatedResponse>, IsAuthenticatedRequest>({
+      query: () => ({
+        url: `is-authenticated`,
+        method: 'POST',
+      }),
+
+      transformResponse: (response: Response<IsAuthenticatedResponse>) => response,
+      transformErrorResponse: (response: ValidationErrorsResponse) => response,
     }),
   }),
 })
 
 export const {
   useSignUpMutation,
-  useSignUpConfirmationMutation,
-  useLoginMutation,
+  useConfirmAccountMutation,
+  useForgotPasswordMutation,
+  useIsAuthenticatedMutation,
+  useLazySignOutQuery,
+  useSignInMutation,
+  useSignOutQuery,
   useResetPasswordMutation,
-  useNewPasswordMutation,
-  useLazyGetCurrentUserQuery,
-  useGetCurrentUserQuery,
-  useLazyLogoutQuery,
-  useLogoutQuery,
 } = authApi
