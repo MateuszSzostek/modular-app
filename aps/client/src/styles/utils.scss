@@ -1,0 +1,25 @@
+.flex {
+    display: flex;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.justify-between{
+    justify-content: space-between;
+}
+
+.vw-100{
+    width: 100vw;
+}
+
+.raw-btn {
+    all: unset; 
+    display: inline-block; 
+    cursor: pointer; 
+
+    &:hover {
+        cursor: pointer;
+    }
+}

@@ -1,18 +1,29 @@
 @import "../../../../styles//variables.scss";
 
-.app-layout {
-  width: 100vw;
+.app-layout__top-nav{
+  border-bottom: 0.5px solid rgb(114, 114, 114);
 }
 
-.app-layout .ant-layout,.app-layout .ant-layout-footer {
-  background-color: #292929;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
+.app-layout__center-nav{
+  display: flex;
+  width: 540px;
+  height: 56px;
 }
 
-.ant-layout-header{
-  background-color: transparent;
+.center-nav-button {
+  & svg,
+  & path {
+    transition: fill 0.1s;
+  }
+
+  &:hover {
+    & svg,
+    & path {
+      fill: var( --color-berry-purple-dark);
+    }
+  }
 }
+
 
 @media (min-width: $desktop-break-point) {
 

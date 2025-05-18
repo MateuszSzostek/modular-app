@@ -11,6 +11,7 @@ import LandingLayout from '../../../layout-context/components/LandingLayout/Land
 import AdminAppLayout from '../../../layout-context/components/AdminAppLayout/AdminAppLayout'
 import ConfirmAccountPageView from '../../views/ConfirmAccountView/ConfirmAccountView'
 import ForgotPasswordView from '../../views/ForgotPasswordView/ForgotPasswordView'
+import AppLayout from '../../../layout-context/components/AppLayout/AppLayout'
 
 export default function AppRouter() {
   // const { isAuthenticated } = useAuth()
@@ -33,7 +34,7 @@ export default function AppRouter() {
             {/* Catch-all route for /auth */}
             <Route path="*" element={<Navigate to={`/${ROUTES.auth}/${ROUTES.login}`} replace />} />
           </Route>
-          <Route path={ROUTES.app} element={<AdminAppLayout />}>
+          <Route path={ROUTES.app} element={<AppLayout />}>
             <Route path={ROUTES.dashboard} element={<DashboardView />} />
           </Route>
         </Route>

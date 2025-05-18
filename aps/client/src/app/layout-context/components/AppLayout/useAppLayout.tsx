@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../../routing-context/domain/router-context'
 import { BookFilled, ProductFilled } from '@ant-design/icons'
 import { MenuProps } from 'antd'
-import './AdminAppLayout.style.scss'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 

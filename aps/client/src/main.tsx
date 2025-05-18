@@ -8,6 +8,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import Head from './meta/Head/Head.tsx'
 import './styles/global.scss'
 import './styles/typography.scss'
+import './styles/utils.scss'
 import './config/i18n/i18n.ts' // Import i18n configuration
 
 createRoot(document.getElementById('root')!).render(
